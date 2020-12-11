@@ -13,11 +13,22 @@
 !/log/.keep
 !/tmp/.keep
 
-# Ignore uploaded files in development
+# Ignore pidfiles, but keep the directory.
+/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
+
+# Ignore uploaded files in development.
 /storage/*
 !/storage/.keep
-
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore coverage
+/coverage
+
+# Ignore notes on the project
+/notes
+/.csv_import.rake
