@@ -28,3 +28,7 @@
 
 # Ignore coverage
 /coverage
+
+# Ignore notes on the project
+/notes
+/.csv_import.rake
