@@ -54,4 +54,22 @@ RSpec.describe 'Merchants API' do
       expect(merchant['data']['attributes']).to have_key('updated_at')
       expect(merchant['data']['attributes']['updated_at']).to be_a String
     end
+
+    it 'can create a new merchant' do
+      params = {
+        name: 'Sunshine Books',
+        created_at: '12/12/20',
+        updated_at: '12/13/20'
+      }
+      post '/api/v1/merchants', params: params
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+      expect(response.status).to_not eq(404)
+
+      created_merchant = Merchant.last
+      expect(created_merchant).to be_a Merchant
+
+      expect(created_merchant.name).to eq(params[:name])
+    end
 end
