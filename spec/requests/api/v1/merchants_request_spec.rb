@@ -56,12 +56,12 @@ RSpec.describe 'Merchants API' do
     end
 
     it 'can create a new merchant' do
-      params = {
+      merchant_params = {
         name: 'Sunshine Books',
         created_at: '12/12/20',
         updated_at: '12/13/20'
       }
-      post '/api/v1/merchants', params: params
+      post '/api/v1/merchants', params: merchant_params
 
       expect(response).to be_successful
       expect(response.status).to eq(200)
@@ -70,6 +70,25 @@ RSpec.describe 'Merchants API' do
       created_merchant = Merchant.last
       expect(created_merchant).to be_a Merchant
 
-      expect(created_merchant.name).to eq(params[:name])
+      expect(created_merchant.name).to eq(merchant_params[:name])
+    end
+
+    it 'can not create a new merchant without merchant_params' do
+      post '/api/v1/merchants'
+
+      expect(response.status).to_not eq(200)
+      expect(response.status).to eq(404)
+    end
+
+    it 'can not create a new merchant when only some merchant_params are present' do
+      merchant_params = {
+        name: '',
+        created_at: '12/12/20',
+        updated_at: '12/13/20'
+      }
+      post '/api/v1/merchants', params: merchant_params
+
+      expect(response.status).to_not eq(200)
+      expect(response.status).to eq(404)
     end
 end
