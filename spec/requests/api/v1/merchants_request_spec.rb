@@ -28,4 +28,30 @@ RSpec.describe 'Merchants API' do
       expect(merchant['attributes']['updated_at']).to be_a String
     end
   end
+
+    it 'can send a unique merchant information' do
+      id = create(:merchant).id
+
+      get "/api/v1/merchants/#{id}"
+
+      merchant = JSON.parse(response.body, symbolize: true)
+
+      expect(response).to be_successful
+      expect(merchant).to be_a Hash
+
+      expect(merchant['data']).to have_key('id')
+      expect(merchant['data']['id']).to be_a String
+
+      expect(merchant['data']).to have_key('type')
+      expect(merchant['data']['type']).to eq('merchant')
+
+      expect(merchant['data']['attributes']).to have_key('name')
+      expect(merchant['data']['attributes']['name']).to be_a String
+
+      expect(merchant['data']['attributes']).to have_key('created_at')
+      expect(merchant['data']['attributes']['created_at']).to be_a String
+
+      expect(merchant['data']['attributes']).to have_key('updated_at')
+      expect(merchant['data']['attributes']['updated_at']).to be_a String
+    end
 end
