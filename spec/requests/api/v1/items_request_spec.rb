@@ -66,4 +66,48 @@ RSpec.describe 'Items API' do
     expect(item['data']['attributes']).to have_key('updated_at')
     expect(item['data']['attributes']['updated_at']).to be_a String
   end
+
+  it 'can create a new item' do
+    merchant_id = create(:merchant).id
+    item_params = {
+      name: 'The Boy, the Mole, the Fox and the Horse',
+      description: 'Charlie Mackesy offers inspiration and hope in uncertain times in this beautiful book, following the tale of a curious boy, a greedy mole, a wary fox and a wise horse who find themselves together in sometimes difficult terrain, sharing their greatest fears and biggest discoveries about vulnerability, kindness, hope, friendship and love.
+      The shared adventures and important conversations between the four friends are full of life lessons that have connected with readers of all ages. ',
+      unit_price: 14.13,
+      merchant_id: merchant_id,
+      created_at: '12/12/20',
+      updated_at: '12/13/20'
+    }
+    post '/api/v1/items', params: item_params
+
+    expect(response).to be_successful
+    expect(response.status).to eq(200)
+    expect(response.status).to_not eq(404)
+
+    created_item = Item.last
+    expect(created_item).to be_a Item
+
+    expect(created_item.name).to eq(item_params[:name])
+    expect(created_item.description).to eq(item_params[:description])
+    expect(created_item.unit_price).to eq(item_params[:unit_price])
+  end
+
+  it 'can not create a new item without item_params' do
+    post '/api/v1/items'
+
+    expect(response.status).to_not eq(200)
+    expect(response.status).to eq(404)
+  end
+
+  it 'can not create a new item when only some item_params are present' do
+    item_params = {
+      name: '',
+      created_at: '12/12/20',
+      updated_at: '12/13/20'
+    }
+    post '/api/v1/items', params: item_params
+
+    expect(response.status).to_not eq(200)
+    expect(response.status).to eq(404)
+  end
 end
