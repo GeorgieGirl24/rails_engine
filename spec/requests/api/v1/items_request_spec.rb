@@ -110,4 +110,37 @@ RSpec.describe 'Items API' do
     expect(response.status).to_not eq(200)
     expect(response.status).to eq(404)
   end
+
+  it 'can update attributes of a item' do
+    id = create(:item).id
+    original_item_name = Item.last.name
+
+    item_params = { name: 'Sir Francis Drake',
+                        created_at: '12/11/20',
+                        updated_at: '12/12/20',
+                        }
+
+    patch "/api/v1/items/#{id}", params: item_params
+
+    expect(response).to be_successful
+
+    item = Item.find_by(id: id)
+    expect(item.name).to_not eq(original_item_name)
+    expect(item.name).to eq(item_params[:name])
+  end
+
+  it 'cannot update attributes of a item if its empty' do
+    id = create(:item).id
+    original_item_name = Merchant.last.name
+
+    item_params = { name: '',
+                        created_at: '12/11/20',
+                        updated_at: '12/12/20',
+                        }
+
+    patch "/api/v1/items/#{id}", params: item_params
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(404)
+  end
 end
