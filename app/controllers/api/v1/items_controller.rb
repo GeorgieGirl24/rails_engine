@@ -35,6 +35,15 @@ class Api::V1::ItemsController < ApplicationController
       (render :status => 404)
     end
   end
+
+  def destroy
+    if item = Item.find(params[:id])
+      item.destroy
+    else
+      (render :status => 404)
+    end
+  end
+
   private
 
   def self.reset_primary_key
