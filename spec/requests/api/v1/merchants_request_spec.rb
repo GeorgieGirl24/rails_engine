@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Merchants API' do
+RSpec.describe 'Merchants API', type: :request do
   it 'can send a list of merchants' do
     create_list(:merchant, 4)
 
@@ -89,6 +89,39 @@ RSpec.describe 'Merchants API' do
       post '/api/v1/merchants', params: merchant_params
 
       expect(response.status).to_not eq(200)
+      expect(response.status).to eq(404)
+    end
+
+    it 'can update attributes of a merchant' do
+      id = create(:merchant).id
+      original_merchant_name = Merchant.last.name
+
+      merchant_params = { name: 'Sir Francis Drake',
+                          created_at: '12/11/20',
+                          updated_at: '12/12/20',
+                          }
+
+      patch "/api/v1/merchants/#{id}", params: merchant_params
+
+      expect(response).to be_successful
+
+      merchant = Merchant.find_by(id: id)
+      expect(merchant.name).to_not eq(original_merchant_name)
+      expect(merchant.name).to eq(merchant_params[:name])
+    end
+
+    it 'cannot update attributes of a merchant if its empty' do
+      id = create(:merchant).id
+      original_merchant_name = Merchant.last.name
+
+      merchant_params = { name: '',
+                          created_at: '12/11/20',
+                          updated_at: '12/12/20',
+                          }
+
+      patch "/api/v1/merchants/#{id}", params: merchant_params
+
+      expect(response).to_not be_successful
       expect(response.status).to eq(404)
     end
 end
