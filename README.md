@@ -1,5 +1,8 @@
 # Rails Engine
 
+- [ ] Badges (of Software used)
+- [ ] Intro
+
 ## Table of Contents
   - [What it does](#what-it-does)
   - [How to Install](#how-to-install)
@@ -8,12 +11,28 @@
   - [Licenses](#licenses)
   - [Project Leads](#project-leads)
   - [Acknowledgments](#acknowledgments)
-- [ ] Badges (of Software used)
-- [ ] Contact
-- [ ] Intro
+  
+## What it does 
+
+## How to Install Rails Engine
+
 - [ ] How to Install
-- [ ] Example Usage
 - [ ] How to set up the dev environment
+
+## Testing 
+
+## Example Usage
+
+- [ ] Example Usage
+
+## Acknowledgments
+
 - [ ] List of articles/resources on the topic
+- [ ] Contact
+
+
+
+
+
 
 
