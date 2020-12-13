@@ -36,6 +36,14 @@ class Api::V1::MerchantsController < ApplicationController
     end
   end
 
+  def destroy
+    if merchant = Merchant.find(params[:id])
+      merchant.destroy
+    else
+      (render :status => 404)
+    end
+  end
+
   private
 
   def self.reset_primary_key
