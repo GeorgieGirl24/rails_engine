@@ -109,4 +109,19 @@ RSpec.describe 'Merchants API', type: :request do
       expect(merchant.name).to_not eq(original_merchant_name)
       expect(merchant.name).to eq(merchant_params[:name])
     end
+
+    it 'cannot update attributes of a merchant if its empty' do
+      id = create(:merchant).id
+      original_merchant_name = Merchant.last.name
+
+      merchant_params = { name: '',
+                          created_at: '12/11/20',
+                          updated_at: '12/12/20',
+                          }
+
+      patch "/api/v1/merchants/#{id}", params: merchant_params
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
+    end
 end
