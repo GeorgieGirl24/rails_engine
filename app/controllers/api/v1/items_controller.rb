@@ -14,6 +14,27 @@ class Api::V1::ItemsController < ApplicationController
       (render json:ItemSerializer.new(item)) : (render status: 404)
   end
 
+  def update
+    blank_check = []
+    item_params.to_h.each do |key, value|
+      if value.blank?
+        blank_check << nil
+      else
+        blank_check << 'all good'
+      end
+    end
+
+    response = blank_check.all?('all good')
+    if response == true
+      (render json: ItemSerializer.new(Item.update({
+                                                    name: params[:name],
+                                                    created_at: params[:created_at],
+                                                    updated_at: params[:updated_at]
+                                                    })))
+    else
+      (render :status => 404)
+    end
+  end
   private
 
   def self.reset_primary_key
