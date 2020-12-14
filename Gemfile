@@ -49,7 +49,7 @@ group :test do
   gem 'launchy'
   gem 'shoulda-matchers'
   gem 'simplecov'
-  gem 'nyan-cat-formatter'
+  # gem 'nyan-cat-formatter'
   gem 'rspec-rails'
 end
 
