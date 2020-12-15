@@ -12,9 +12,9 @@ describe Merchant do
 
   describe 'class methods' do
     it '.search_single' do
-      merchant_1 = create(:merchant)
-      merchant_2 = create(:merchant, created_at: '2020-12-14')
-      merchant_3 = create(:merchant, name: 'Her Name Is Mud')
+      merchant1 = create(:merchant)
+      merchant2 = create(:merchant, created_at: '2020-12-14')
+      merchant3 = create(:merchant, name: 'Her Name Is Mud')
       search = '2020-12-14'
       attribute = 'created_at'
       response = Merchant.search_single(attribute, search)
@@ -29,9 +29,9 @@ describe Merchant do
     end
 
     it '.search_date' do
-      merchant_1 = create(:merchant)
-      merchant_2 = create(:merchant, created_at: '2020-12-14')
-      merchant_3 = create(:merchant)
+      merchant1 = create(:merchant)
+      merchant2 = create(:merchant, created_at: '2020-12-14')
+      merchant3 = create(:merchant)
       search = '2020-12-14'
       attribute = 'created_at'
       response = Merchant.search_date(attribute, search)
@@ -41,9 +41,9 @@ describe Merchant do
     end
 
     it '.search_string' do
-      merchant_1 = create(:merchant, name: 'The Happily Ever Crafter')
-      merchant_2 = create(:merchant)
-      merchant_3 = create(:merchant)
+      merchant1 = create(:merchant, name: 'The Happily Ever Crafter')
+      merchant2 = create(:merchant)
+      merchant3 = create(:merchant)
       search = 'The Happily Ever Crafter'
       attribute = 'name'
       response = Merchant.search_string(attribute, search)
@@ -53,9 +53,9 @@ describe Merchant do
     end
 
     it '.search_multiple' do
-      merchant_1 = create(:merchant, name: 'The Happily Ever Crafter')
-      merchant_2 = create(:merchant, name: 'Crafting Made Easy')
-      merchant_3 = create(:merchant)
+      merchant1 = create(:merchant, name: 'The Happily Ever Crafter')
+      merchant2 = create(:merchant, name: 'Crafting Made Easy')
+      merchant3 = create(:merchant)
       search = 'Craft'
       attribute = 'name'
       response = Merchant.search_multiple(attribute, search)

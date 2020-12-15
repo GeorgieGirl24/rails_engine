@@ -116,9 +116,8 @@ RSpec.describe 'Items API' do
     original_item_name = Item.last.name
 
     item_params = { name: 'Sir Francis Drake',
-                        created_at: '12/11/20',
-                        updated_at: '12/12/20',
-                        }
+                    created_at: '12/11/20',
+                    updated_at: '12/12/20' }
 
     patch "/api/v1/items/#{id}", params: item_params
 
@@ -134,9 +133,8 @@ RSpec.describe 'Items API' do
     original_item_name = Merchant.last.name
 
     item_params = { name: '',
-                        created_at: '12/11/20',
-                        updated_at: '12/12/20',
-                        }
+                    created_at: '12/11/20',
+                    updated_at: '12/12/20' }
 
     patch "/api/v1/items/#{id}", params: item_params
 
@@ -156,12 +154,11 @@ RSpec.describe 'Items API' do
   it 'cannot destroy a item object without an id' do
     item = create(:item)
     if item.id == 1
-      delete "/api/v1/items/1"
+      delete '/api/v1/items/1'
     else
       # expect(response.status).to_not eq(204)
       # expect(response.status).to eq(404)
       expect(item[:name]).to eq(item[:name])
     end
-
   end
 end

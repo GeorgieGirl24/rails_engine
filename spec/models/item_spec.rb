@@ -4,7 +4,7 @@ describe Item do
   describe 'relationships' do
     it { should belong_to :merchant }
     it { should have_many :invoice_items }
-    it { should have_many(:invoices).through(:invoice_items)}
+    it { should have_many(:invoices).through(:invoice_items) }
   end
 
   describe 'validations' do
@@ -15,10 +15,10 @@ describe Item do
 
   describe 'class methods' do
     it '.search_single' do
-      item_1 = create(:item, name: 'ZZ Plant')
-      item_2 = create(:item, description: 'Green and strong!')
-      item_3 = create(:item, unit_price: 10.87)
-      item_4 = create(:item, created_at: '2020-12-12')
+      item1 = create(:item, name: 'ZZ Plant')
+      item2 = create(:item, description: 'Green and strong!')
+      item3 = create(:item, unit_price: 10.87)
+      item4 = create(:item, created_at: '2020-12-12')
 
       search = 'ZZ Plant'
       attribute = :name
@@ -54,9 +54,9 @@ describe Item do
     end
 
     it '.search_string' do
-      item_1 = create(:item, name: 'ZZ Plant')
-      item_2 = create(:item)
-      item_3 = create(:item)
+      item1 = create(:item, name: 'ZZ Plant')
+      item2 = create(:item)
+      item3 = create(:item)
       search = 'ZZ Plant'
       attribute = :name
       response = Item.search_string(attribute, search).first
@@ -67,9 +67,9 @@ describe Item do
     end
 
     it '.search_date' do
-      item_1 = create(:item)
-      item_2 = create(:item, created_at: '2020-12-14')
-      item_3 = create(:item)
+      item1 = create(:item)
+      item2 = create(:item, created_at: '2020-12-14')
+      item3 = create(:item)
       search = '2020-12-14'
       attribute = :created_at
       response = Item.search_date(attribute, search).first
@@ -80,9 +80,9 @@ describe Item do
     end
 
     it '.unit_price_search' do
-      item_1 = create(:item)
-      item_2 = create(:item)
-      item_3 = create(:item, unit_price: 13.95)
+      item1 = create(:item)
+      item2 = create(:item)
+      item3 = create(:item, unit_price: 13.95)
       search = 13.95
       attribute = :unit_price
       response = Item.unit_price_search(attribute, search).first
@@ -93,10 +93,10 @@ describe Item do
     end
 
     it '.search_multiple' do
-      item_1 = create(:item)
-      item_2 = create(:item)
-      item_3 = create(:item, unit_price: 13.95)
-      item_4 = create(:item, unit_price: 13.95)
+      item1 = create(:item)
+      item2 = create(:item)
+      item3 = create(:item, unit_price: 13.95)
+      item4 = create(:item, unit_price: 13.95)
       search = 13.95
       attribute = 'unit_price'
       response = Item.search_multiple(attribute, search)
