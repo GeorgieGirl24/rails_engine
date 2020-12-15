@@ -7,13 +7,13 @@ class Merchant < ApplicationRecord
   def self.search_single(attribute, search)
     if attribute == 'created_at' || attribute == 'updated_at'
       search_date(attribute, search).first
-    else
+    elsif attribute == 'name'
       search_string(attribute, search).first
     end
   end
 
   def self.search_string(attribute, search)
-      where("#{attribute} ILIKE ?",  "%#{search}%")
+    where("#{attribute} ILIKE ?",  "%#{search}%")
   end
 
   def self.search_date(attribute, search)
