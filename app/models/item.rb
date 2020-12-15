@@ -16,9 +16,6 @@ class Item < ApplicationRecord
     else
       search_string(attribute, search).first
     end
-    # search = item_params.values.first
-    # attribute = item_params.keys.first
-    # where("#{attribute} ILIKE ?",  "%#{search}%")
   end
 
   def self.search_string(attribute, search)
@@ -26,14 +23,10 @@ class Item < ApplicationRecord
   end
 
   def self.search_date(attribute, search)
-    # search = item_params.values.first
-    # attribute = item_params.keys.first
     where("DATE(#{attribute}) = ?", "%#{search}%")
   end
 
   def self.unit_price_search(attribute, search)
-    # search = item_params.values.first
-    # attribute = item_params.keys.first
     where("to_char(#{attribute}, '99999999.99') ILIKE ?", "%#{search}%")
   end
 
