@@ -12,9 +12,8 @@ RSpec.describe 'Api::V1::Merchants::SearchController' do
     get "/api/v1/merchants/find?#{attribute}=#{search_term}"
     expect(response).to be_successful
 
-    json = JSON.parse(response.body, symbolize_names: true)[:data]
-    # binding.pry
-    merchant = json.last
+    merchant = JSON.parse(response.body, symbolize_names: true)[:data]
+
     expect(merchant).to be_a Hash
     expect(merchant[:id].to_i).to eq(merchant_2.id)
     expect(merchant[:id].to_i).to_not eq(merchant_3.id)
@@ -35,8 +34,7 @@ RSpec.describe 'Api::V1::Merchants::SearchController' do
     get "/api/v1/merchants/find?#{attribute}=#{search_term}"
     expect(response).to be_successful
 
-    json = JSON.parse(response.body, symbolize_names: true)[:data]
-    merchant = json.last
+    merchant = JSON.parse(response.body, symbolize_names: true)[:data]
 
     expect(merchant).to be_a Hash
     expect(merchant[:id].to_i).to eq(merchant_2.id)
@@ -59,8 +57,7 @@ RSpec.describe 'Api::V1::Merchants::SearchController' do
     get "/api/v1/merchants/find?#{attribute}=#{search_term}"
     expect(response).to be_successful
 
-    json = JSON.parse(response.body, symbolize_names: true)[:data]
-    merchant = json.last
+    merchant = JSON.parse(response.body, symbolize_names: true)[:data]
 
     expect(merchant).to be_a Hash
     expect(merchant[:id].to_i).to eq(merchant_2.id)
@@ -83,8 +80,7 @@ RSpec.describe 'Api::V1::Merchants::SearchController' do
     get "/api/v1/merchants/find?#{attribute}=#{search_term}"
     expect(response).to be_successful
 
-    json = JSON.parse(response.body, symbolize_names: true)[:data]
-    merchant = json.last
+    merchant = JSON.parse(response.body, symbolize_names: true)[:data]
 
     expect(merchant).to be_a Hash
     expect(merchant[:id].to_i).to eq(merchant_2.id)
@@ -109,8 +105,7 @@ RSpec.describe 'Api::V1::Merchants::SearchController' do
     get "/api/v1/merchants/find?#{attribute}=#{search_term}"
     expect(response).to be_successful
 
-    json = JSON.parse(response.body, symbolize_names: true)[:data]
-    merchant = json.last
+    merchant = JSON.parse(response.body, symbolize_names: true)[:data]
     
     expect(merchant).to be_a Hash
     expect(merchant[:id].to_i).to eq(merchant_3.id)
