@@ -10,29 +10,32 @@ class Api::V1::MerchantsController < ApplicationController
   def create
     Merchant.reset_primary_key
     merchant = Merchant.new(merchant_params)
-    return merchant.save ?
-      (render json: MerchantSerializer.new(merchant)) : (render :status => 404)
+    if merchant.save
+      (render json: MerchantSerializer.new(merchant))
+    else
+      (render status: 404)
+    end
   end
 
   def update
     blank_check = []
-    merchant_params.to_h.each do |key, value|
-      if value.blank?
-        blank_check << nil
-      else
-        blank_check << 'all good'
-      end
+    merchant_params.to_h.each do |_key, value|
+      blank_check << if value.blank?
+                       nil
+                     else
+                       'all good'
+                     end
     end
 
     response = blank_check.all?('all good')
     if response == true
       (render json: MerchantSerializer.new(Merchant.update({
-                                                            name: params[:name],
-                                                            created_at: params[:created_at],
-                                                            updated_at: params[:updated_at]
-                                                            })))
+                                                             name: params[:name],
+                                                             created_at: params[:created_at],
+                                                             updated_at: params[:updated_at]
+                                                           })))
     else
-      (render :status => 404)
+      (render status: 404)
     end
   end
 
@@ -40,7 +43,7 @@ class Api::V1::MerchantsController < ApplicationController
     if merchant = Merchant.find(params[:id])
       merchant.destroy
     else
-      (render :status => 404)
+      (render status: 404)
     end
   end
 

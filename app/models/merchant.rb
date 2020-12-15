@@ -5,7 +5,7 @@ class Merchant < ApplicationRecord
   validates :name, presence: true
 
   def self.search_single(attribute, search)
-    if attribute == 'created_at' || attribute == 'updated_at'
+    if %w[created_at updated_at].include?(attribute)
       search_date(attribute, search).first
     elsif attribute == 'name'
       search_string(attribute, search).first
@@ -13,7 +13,7 @@ class Merchant < ApplicationRecord
   end
 
   def self.search_string(attribute, search)
-    where("#{attribute} ILIKE ?",  "%#{search}%")
+    where("#{attribute} ILIKE ?", "%#{search}%")
   end
 
   def self.search_date(attribute, search)
@@ -21,7 +21,7 @@ class Merchant < ApplicationRecord
   end
 
   def self.search_multiple(attribute, search)
-    if attribute == 'created_at' || attribute == 'updated_at'
+    if %w[created_at updated_at created_at updated_at created_at updated_at].include?(attribute)
       search_date(attribute, search)
     else
       search_string(attribute, search)
