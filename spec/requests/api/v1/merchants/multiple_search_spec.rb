@@ -14,7 +14,7 @@ RSpec.describe 'Api::V1::Merchants::SearchController' do
     expect(response).to be_successful
 
     merchants = JSON.parse(response.body, symbolize_names: true)[:data]
-# binding.pry
+
     expect(merchants).to be_a Array
     expect(merchants.count).to eq(2)
     merchants.each do |merchant|
@@ -128,7 +128,7 @@ RSpec.describe 'Api::V1::Merchants::SearchController' do
     merchants = JSON.parse(response.body, symbolize_names: true)[:data]
     expect(merchants).to be_a Array
     expect(merchants.count).to eq(2)
-    # binding.pry
+
     merchants.each do |merchant|
       expect(merchant).to be_a Hash
       expect(merchant[:id].to_i).to eq(merchant_3.id).or(eq merchant_1.id)
