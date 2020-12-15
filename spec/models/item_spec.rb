@@ -16,11 +16,50 @@ describe Item do
   describe 'class methods' do
     it '.search_single' do
       item_1 = create(:item, name: 'ZZ Plant')
+      item_2 = create(:item, description: 'Green and strong!')
+      item_3 = create(:item, unit_price: 10.87)
+      item_4 = create(:item, created_at: '2020-12-12')
+
+      search = 'ZZ Plant'
+      attribute = :name
+      response = Item.search_single(attribute, search)
+      expect(response).to be_a Item
+      expect(response[:name]).to be_a String
+      expect(response[:description]).to be_a String
+      expect(response[:unit_price]).to be_a Float
+
+      search_1 = 'Green'
+      attribute_1 = :description
+      response = Item.search_single(attribute_1, search_1)
+      expect(response).to be_a Item
+      expect(response[:name]).to be_a String
+      expect(response[:description]).to be_a String
+      expect(response[:unit_price]).to be_a Float
+
+      search_2 = 10.87
+      attribute_2 = 'unit_price'
+      response = Item.search_single(attribute_2, search_2)
+      expect(response).to be_a Item
+      expect(response[:name]).to be_a String
+      expect(response[:description]).to be_a String
+      expect(response[:unit_price]).to be_a Float
+
+      search_3 = '2020-12-12'
+      attribute_3 = 'created_at'
+      response = Item.search_single(attribute_3, search_3)
+      expect(response).to be_a Item
+      expect(response[:name]).to be_a String
+      expect(response[:description]).to be_a String
+      expect(response[:unit_price]).to be_a Float
+    end
+
+    it '.search_string' do
+      item_1 = create(:item, name: 'ZZ Plant')
       item_2 = create(:item)
       item_3 = create(:item)
-      # search = 'ZZ Plant'
-      # attribute = :name
-      response = Item.search_single({name: 'ZZ Plant'}).first
+      search = 'ZZ Plant'
+      attribute = :name
+      response = Item.search_string(attribute, search).first
       expect(response).to be_a Item
       expect(response[:name]).to be_a String
       expect(response[:description]).to be_a String
@@ -31,9 +70,9 @@ describe Item do
       item_1 = create(:item)
       item_2 = create(:item, created_at: '2020-12-14')
       item_3 = create(:item)
-      # search = '2020-14-12'
-      # attribute = :created_at
-      response = Item.search_date({created_at: '2020-12-14'}).first
+      search = '2020-12-14'
+      attribute = :created_at
+      response = Item.search_date(attribute, search).first
       expect(response).to be_a Item
       expect(response[:name]).to be_a String
       expect(response[:description]).to be_a String
@@ -44,13 +83,27 @@ describe Item do
       item_1 = create(:item)
       item_2 = create(:item)
       item_3 = create(:item, unit_price: 13.95)
-      # search = 13.95
-      # attribute = :unit_price
-      response = Item.unit_price_search({unit_price: 13.95}).first
+      search = 13.95
+      attribute = :unit_price
+      response = Item.unit_price_search(attribute, search).first
       expect(response).to be_a Item
       expect(response[:name]).to be_a String
       expect(response[:description]).to be_a String
       expect(response[:unit_price]).to be_a Float
+    end
+
+    it '.search_multiple' do
+      item_1 = create(:item)
+      item_2 = create(:item)
+      item_3 = create(:item, unit_price: 13.95)
+      item_4 = create(:item, unit_price: 13.95)
+      search = 13.95
+      attribute = 'unit_price'
+      response = Item.search_multiple(attribute, search)
+      # expect(response).to be_a Array
+      expect(response.count).to eq(2)
+      expect(response.first).to be_a Item
+      expect(response.first[:name]).to be_a String
     end
   end
 end
