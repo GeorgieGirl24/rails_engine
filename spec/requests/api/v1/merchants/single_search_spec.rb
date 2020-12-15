@@ -106,7 +106,7 @@ RSpec.describe 'Api::V1::Merchants::SearchController' do
     expect(response).to be_successful
 
     merchant = JSON.parse(response.body, symbolize_names: true)[:data]
-    
+
     expect(merchant).to be_a Hash
     expect(merchant[:id].to_i).to eq(merchant_3.id)
     expect(merchant[:id].to_i).to_not eq(merchant_2.id)

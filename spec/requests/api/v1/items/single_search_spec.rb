@@ -12,8 +12,8 @@ RSpec.describe 'Api::V1::Items::SearchController' do
     get "/api/v1/items/find?#{attribute}=#{search_term}"
     expect(response).to be_successful
 
-    json = JSON.parse(response.body, symbolize_names: true)[:data]
-    item = json.last
+    item = JSON.parse(response.body, symbolize_names: true)[:data]
+
     expect(item).to be_a Hash
     expect(item[:id].to_i).to eq(item_2.id)
     expect(item[:id].to_i).to_not eq(item_3.id)
@@ -34,8 +34,7 @@ RSpec.describe 'Api::V1::Items::SearchController' do
     get "/api/v1/items/find?#{attribute}=#{search_term}"
     expect(response).to be_successful
 
-    json = JSON.parse(response.body, symbolize_names: true)[:data]
-    item = json.last
+    item = JSON.parse(response.body, symbolize_names: true)[:data]
 
     expect(item).to be_a Hash
     expect(item[:id].to_i).to eq(item_2.id)
@@ -59,8 +58,7 @@ RSpec.describe 'Api::V1::Items::SearchController' do
     get "/api/v1/items/find?#{attribute}=#{search_term}"
     expect(response).to be_successful
 
-    json = JSON.parse(response.body, symbolize_names: true)[:data]
-    item = json.last
+    item = JSON.parse(response.body, symbolize_names: true)[:data]
 
     expect(item).to be_a Hash
     expect(item[:id].to_i).to eq(item_3.id)
@@ -85,8 +83,7 @@ RSpec.describe 'Api::V1::Items::SearchController' do
     get "/api/v1/items/find?#{attribute}=#{search_term}"
     expect(response).to be_successful
 
-    json = JSON.parse(response.body, symbolize_names: true)[:data]
-    item = json.last
+    item = JSON.parse(response.body, symbolize_names: true)[:data]
 
     expect(item).to be_a Hash
     expect(item[:id].to_i).to eq(item_1.id)
@@ -115,8 +112,8 @@ RSpec.describe 'Api::V1::Items::SearchController' do
     get "/api/v1/items/find?#{attribute}=#{search_term}"
     expect(response).to be_successful
 
-    json = JSON.parse(response.body, symbolize_names: true)[:data]
-    item = json.last
+    item = JSON.parse(response.body, symbolize_names: true)[:data]
+
     expect(item).to be_a Hash
     expect(item[:id].to_i).to eq(item_3.id)
     expect(item[:id].to_i).to_not eq(item_2.id)

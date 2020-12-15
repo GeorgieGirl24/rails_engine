@@ -8,21 +8,35 @@ class Item < ApplicationRecord
   validates :description, presence: true
   validates :unit_price, presence: true
 
-  def self.search_single(item_params)
-    search = item_params.values.first
-    attribute = item_params.keys.first
+  def self.search_single(attribute, search)
+    if attribute == 'created_at' || attribute == 'updated_at'
+      search_date(attribute, search).first
+    elsif attribute == 'unit_price'
+      unit_price_search(attribute, search).first
+    else
+      search_string(attribute, search).first
+    end
+  end
+
+  def self.search_string(attribute, search)
     where("#{attribute} ILIKE ?",  "%#{search}%")
   end
 
-  def self.search_date(item_params)
-    search = item_params.values.first
-    attribute = item_params.keys.first
+  def self.search_date(attribute, search)
     where("DATE(#{attribute}) = ?", "%#{search}%")
   end
 
-  def self.unit_price_search(item_params)
-    search = item_params.values.first
-    attribute = item_params.keys.first
+  def self.unit_price_search(attribute, search)
     where("to_char(#{attribute}, '99999999.99') ILIKE ?", "%#{search}%")
+  end
+
+  def self.search_multiple(attribute, search)
+    if attribute == 'created_at' || attribute == 'updated_at'
+      search_date(attribute, search)
+    elsif attribute == 'unit_price'
+      unit_price_search(attribute, search)
+    else
+      search_string(attribute, search)
+    end
   end
 end
