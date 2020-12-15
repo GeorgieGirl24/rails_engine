@@ -9,7 +9,7 @@ FactoryBot.define do
       after :create do |merchant, evaluator|
         # if you call this in the test
         #   merchant = create(:merchant, :with_items, items: 3)
-        create_list(:items, evaluator.items, merchant: merchant)
+        create_list(:item, evaluator.items, merchant: merchant)
       end
     end
   end
