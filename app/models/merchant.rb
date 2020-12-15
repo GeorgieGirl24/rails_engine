@@ -17,6 +17,13 @@ class Merchant < ApplicationRecord
     # wrap it in date look it up like doesn't like dates
     # so use something else like '='
     # where("to_char(#{attribute},'yyyy-mon-dd-HH-MI-SS') ILIKE ?", "%#{search}%")
-    # binding.pry
+  end
+
+  def self.search_multiple(attribute, search)
+    if attribute == 'created_at' || attribute == 'updated_at'
+      where("DATE(#{attribute}) = ?", "%#{search}%")
+    else
+      where("#{attribute} ILIKE ?",  "%#{search}%")
+    end 
   end
 end
