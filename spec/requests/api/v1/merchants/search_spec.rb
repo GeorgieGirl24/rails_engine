@@ -104,7 +104,6 @@ RSpec.describe 'Api::V1::Merchants::SearchController' do
     merchant_3 = create(:merchant, name: 'Her Name Is Mud', created_at: '2020-11-13')
 
     attribute = :created_at
-    # search_term = '2020-11-13T06:13:28.643Z'
     search_term = '2020-11-13'
 
     get "/api/v1/merchants/find?#{attribute}=#{search_term}"
@@ -112,7 +111,7 @@ RSpec.describe 'Api::V1::Merchants::SearchController' do
 
     json = JSON.parse(response.body, symbolize_names: true)[:data]
     merchant = json.last
-# binding.pry
+    
     expect(merchant).to be_a Hash
     expect(merchant[:id].to_i).to eq(merchant_3.id)
     expect(merchant[:id].to_i).to_not eq(merchant_2.id)
