@@ -112,7 +112,7 @@ RSpec.describe 'Api::V1::Merchants::SearchController' do
     end
   end
 
-  it 'can find a single merchant matching the search parameter with a created_at date' do
+  it 'can find merchants matching the search parameter with a created_at date' do
     merchant1 = create(:merchant,
                         name: 'The Happily Ever Crafter',
                         created_at: '2020-11-13')
