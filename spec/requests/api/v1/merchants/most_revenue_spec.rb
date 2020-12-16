@@ -53,7 +53,7 @@ RSpec.describe 'Finds the Merchant with the hightest revenue' do
 
     expect(response).to be_successful
     results = JSON.parse(response.body, symbolize_names: true)[:data]
-# binding.pry
+
     expect(results).to be_a Array
     expect(results.count).to eq(3)
     most_revenue = results.first
