@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'Finds the Merchant with the hightest revenue' do
-  scenario 'returns x number top merchants with the hightest revenue' do
+RSpec.describe 'Revenue Across Date Range' do
+  scenario 'Returns total revenue across all merchants in a given date range' do
     merchant1 = create(:merchant)
     merchant2 = create(:merchant)
     merchant3 = create(:merchant)
@@ -48,18 +48,20 @@ RSpec.describe 'Finds the Merchant with the hightest revenue' do
     create(:transaction, result: 'failed', invoice_id: invoice10.id)
     create(:invoice_item, quantity: 1, unit_price: 50.00, invoice_id: invoice10.id, item_id: create(:item, unit_price: 50.00).id)
 
-    number_of_merchants = 3
-    get "/api/v1/merchants/most_revenue?quantity=#{number_of_merchants}"
+    merchants_revenue = 150.00
+    incorrect_revenue = 300.00
+
+    start_date = Date.today
+    end_date = Date.today
+    get "/api/v1/revenue?start=#{start_date}&end=#{end_date}"
 
     expect(response).to be_successful
-    results = JSON.parse(response.body, symbolize_names: true)[:data]
-# binding.pry
-    expect(results).to be_a Array
-    expect(results.count).to eq(3)
-    most_revenue = results.first
-    expect(most_revenue[:id].to_i).to eq(merchant5.id)
-    expect(most_revenue[:id].to_i).to_not eq(merchant1.id)
-    expect(most_revenue[:type]).to eq('merchant')
-    expect(most_revenue[:attributes][:name]).to eq(merchant5.name)
+    result = JSON.parse(response.body, symbolize_names: true)[:data]
+
+    expect(result).to be_a Hash
+    expect(result[:id]).to eq(nil)
+    expect(result[:type]).to eq('revenue')
+    expect(result[:attributes][:revenue]).to eq(merchants_revenue)
+    expect(result[:attributes][:revenue]).to_not eq(incorrect_revenue)
   end
 end
