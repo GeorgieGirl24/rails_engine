@@ -7,4 +7,13 @@ class Invoice < ApplicationRecord
   has_many :transactions, dependent: :destroy
   has_many :items, through: :invoice_items
 
+  scope :successful, -> { where(status: 'shipped') }
+
+  def self.most_expensive
+    joins(:invoice_items, :transactions)
+      .merge(Transaction.successful)
+      .select('invoices.*, SUM(invoice_items.quantity * invoice_items.unit_price) AS revenue')
+      .group(:id)
+      .order("revenue DESC").limit(5)
+  end
 end
