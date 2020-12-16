@@ -48,24 +48,18 @@ RSpec.describe 'Finds the Merchant with the hightest revenue' do
     create(:transaction, result: 'failed', invoice_id: invoice10.id)
     create(:invoice_item, quantity: 1, unit_price: 50.00, invoice_id: invoice10.id, item_id: create(:item, unit_price: 50.00).id)
 
-    # merchant1_revenue = 10.00
-    # merchant2_revenue = 20.00
-    # merchant3_revenue = 30.00
-    # merchant4_revenue = 40.00
-    # merchant5_revenue = 50.00
-
     number_of_merchants = 3
-    GET "/api/v1/merchants/most_revenue?quantity=#{number_of_merchants}"
+    get "/api/v1/merchants/most_revenue?quantity=#{number_of_merchants}"
 
     expect(response).to be_successful
     results = JSON.parse(response.body, symbolize_names: true)[:data]
+
     expect(results).to be_a Array
     expect(results.count).to eq(3)
-    results.each do |result|
-      expect(result[:id]).to eq(merchant5.id).or(eq merchant4.id).or(eq merchant3.id)
-      expect(result[:id]).to_not eq(merchant1.id).or(eq merchant2.id)
-      expect(result[:type]).to eq('merchant')
-      expect(result[:attributes][:name]).to eq(merchant5.name).or(eq merchant4.name).or(eq merchant3.name)
-    end
-  end 
+    most_revenue = results.first
+    expect(most_revenue[:id].to_i).to eq(merchant5.id)
+    expect(most_revenue[:id].to_i).to_not eq(merchant1.id)
+    expect(most_revenue[:type]).to eq('merchant')
+    expect(most_revenue[:attributes][:name]).to eq(merchant5.name)
+  end
 end
