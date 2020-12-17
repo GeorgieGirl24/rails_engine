@@ -11,14 +11,14 @@ class Api::V1::MerchantsController < ApplicationController
     Merchant.reset_primary_key
     merchant = Merchant.new(merchant_params)
     if merchant.save
-      (render json: MerchantSerializer.new(merchant))
+      render json: MerchantSerializer.new(merchant)
     else
-      (render status: 404)
+      render status: 404
     end
   end
 
   def update
-    if check_params == 3
+    if check_params.include?('name')
       render json: MerchantSerializer.new(Merchant.update(params[:id], merchant_params))
     else
       render status: 404
@@ -29,17 +29,18 @@ class Api::V1::MerchantsController < ApplicationController
     if Merchant.exists?(params[:id])
        Merchant.destroy(params[:id])
     else
-      (render status: 404)
+      render status: 404
     end
   end
 
   private
 
   def check_params
-    number_params = merchant_params.reject do |attribute, search|
+    merchant_params.reject do |attribute, search|
       search.blank?
     end
-    number_params.to_h.count
+    # binding.pry
+    # number_params.to_h.count
   end
 
   def self.reset_primary_key
