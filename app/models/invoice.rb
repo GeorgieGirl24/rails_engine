@@ -12,6 +12,7 @@ class Invoice < ApplicationRecord
   def self.most_expensive(quantity)
     joins(:invoice_items, :transactions)
       .merge(Transaction.successful)
+      .merge(Invoice.successful)
       .select('invoices.*, SUM(invoice_items.quantity * invoice_items.unit_price) AS revenue')
       .group(:id)
       .order("revenue DESC").limit(quantity)
