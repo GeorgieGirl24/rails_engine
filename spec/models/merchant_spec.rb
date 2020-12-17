@@ -55,14 +55,23 @@ describe Merchant do
     it '.search_multiple' do
       merchant1 = create(:merchant, name: 'The Happily Ever Crafter')
       merchant2 = create(:merchant, name: 'Crafting Made Easy')
-      merchant3 = create(:merchant)
+      merchant3 = create(:merchant, updated_at: '2020-04-01T00:00:00 UTC')
+      merchant3 = create(:merchant, updated_at: '2020-04-01T00:00:00 UTC')
+      
       search = 'Craft'
       attribute = 'name'
       response = Merchant.search_multiple(attribute, search)
-      # expect(response).to be_a Array
       expect(response.count).to eq(2)
       expect(response.first).to be_a Merchant
       expect(response.first[:name]).to be_a String
+
+      search1 = '2020-04-01T00:00:00 UTC'
+      attribute1 = 'updated_at'
+      response1 = Merchant.search_multiple(attribute1, search1)
+
+      expect(response1.count).to eq(2)
+      expect(response1.first).to be_a Merchant
+      expect(response1.first[:updated_at]).to be_a ActiveSupport::TimeWithZone
     end
 
     it '.most_revenue' do
@@ -209,7 +218,7 @@ describe Merchant do
     incorrect_total_revenue = 3_334.23
 
     merchant_revenue = Merchant.single_revenue(merchant1.id)
-    expect(merchant_revenue).to be_a Revenue 
+    expect(merchant_revenue).to be_a Revenue
     expect(merchant_revenue.revenue).to eq(correct_total_revenue)
     expect(merchant_revenue.revenue).to_not eq(incorrect_total_revenue)
   end
