@@ -131,7 +131,7 @@ RSpec.describe 'Merchants API' do
     delete "/api/v1/merchants/#{id}"
     expect(response.body).to eq('')
     expect(response.status).to eq(204)
-    expect(response.status).to_not eq(400)
+    expect(response.status).to_not eq(404)
   end
 
   it 'cannot destroy a merchant object without an id' do
