@@ -37,10 +37,10 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def destroy
-    if item = Item.find(params[:id])
-      item.destroy
+    if Item.exists?(params[:id])
+      Item.destroy(params[:id])
     else
-      (render :status => 404)
+      (render status: 404)
     end
   end
 

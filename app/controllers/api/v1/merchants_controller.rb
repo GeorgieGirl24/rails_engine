@@ -40,8 +40,8 @@ class Api::V1::MerchantsController < ApplicationController
   end
 
   def destroy
-    if merchant = Merchant.find(params[:id])
-      merchant.destroy
+    if Merchant.exists?(params[:id])
+      Merchant.destroy(params[:id])
     else
       (render status: 404)
     end

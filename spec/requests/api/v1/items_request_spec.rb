@@ -151,14 +151,10 @@ RSpec.describe 'Items API' do
     expect(response.status).to_not eq(400)
   end
 
-  it 'cannot destroy a item object without an id' do
-    item = create(:item)
-    if item.id == 1
-      delete '/api/v1/items/1'
-    else
-      # expect(response.status).to_not eq(204)
-      # expect(response.status).to eq(404)
-      expect(item[:name]).to eq(item[:name])
-    end
+  it 'cannot destroy a merchant object without an id' do
+    item = create(:item, id: 2)
+    delete "/api/v1/items/1"
+    expect(response).to_not be_successful
+    expect(response.status).to eq(404)
   end
 end

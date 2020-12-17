@@ -128,18 +128,13 @@ RSpec.describe 'Merchants API' do
     delete "/api/v1/merchants/#{id}"
     expect(response.body).to eq('')
     expect(response.status).to eq(204)
-    expect(response.status).to_not eq(400)
+    expect(response.status).to_not eq(404)
   end
 
   it 'cannot destroy a merchant object without an id' do
-    merchant = create(:merchant)
-
-    if merchant.id == 1
-      delete '/api/v1/merchants/1'
-    else
-      # expect(response.status).to_not eq(204)
-      # expect(response.status).to eq(404)
-      expect(merchant[:name]).to eq(merchant[:name])
-    end
+    merchant = create(:merchant, id: 2)
+    delete "/api/v1/merchants/1"
+    expect(response).to_not be_successful
+    expect(response.status).to eq(404)
   end
 end
