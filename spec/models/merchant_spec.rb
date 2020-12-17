@@ -35,7 +35,6 @@ describe Merchant do
       search = '2020-12-14'
       attribute = 'created_at'
       response = Merchant.search_date(attribute, search)
-      # expect(response).to be_a Array
       expect(response.first).to be_a Merchant
       expect(response.first[:name]).to be_a String
     end
@@ -47,7 +46,6 @@ describe Merchant do
       search = 'The Happily Ever Crafter'
       attribute = 'name'
       response = Merchant.search_string(attribute, search)
-      # expect(response).to be_a Array
       expect(response.first).to be_a Merchant
       expect(response.first[:name]).to be_a String
     end
@@ -57,7 +55,7 @@ describe Merchant do
       merchant2 = create(:merchant, name: 'Crafting Made Easy')
       merchant3 = create(:merchant, updated_at: '2020-04-01T00:00:00 UTC')
       merchant3 = create(:merchant, updated_at: '2020-04-01T00:00:00 UTC')
-      
+
       search = 'Craft'
       attribute = 'name'
       response = Merchant.search_multiple(attribute, search)
