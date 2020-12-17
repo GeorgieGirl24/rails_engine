@@ -15,7 +15,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def update
-    if check_params == 6
+    if check_params
       render json: ItemSerializer.new(Item.update(params[:id], item_params))
     else
       render status: 404
@@ -26,7 +26,7 @@ class Api::V1::ItemsController < ApplicationController
     if Item.exists?(params[:id])
        Item.destroy(params[:id])
     else
-      (render status: 404)
+      render status: 404
     end
   end
 
@@ -36,7 +36,7 @@ class Api::V1::ItemsController < ApplicationController
     number_params = item_params.reject do |attribute, search|
       search.blank?
     end
-    number_params.to_h.count
+    number_params.include?('name' && 'description' && 'merchant_id' && 'unit_price')
   end
 
   def self.reset_primary_key
