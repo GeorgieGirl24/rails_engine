@@ -181,4 +181,36 @@ describe Merchant do
       expect(result[:name]).to eq(merchant1.name).or(eq merchant2.name)
     end
   end
+
+  it '.single_revenue' do
+    merchant1 = create(:merchant)
+
+    invoice1 = create(:invoice, merchant_id: merchant1.id)
+    create(:transaction, result: 'success', invoice_id: invoice1.id)
+    create(:invoice_item, quantity: 1, unit_price: 280.00, invoice_id: invoice1.id, item_id: create(:item, unit_price: 10.00).id)
+
+    invoice2 = create(:invoice, merchant_id: merchant1.id)
+    create(:transaction, result: 'failed', invoice_id: invoice2.id)
+    create(:invoice_item, quantity: 1, unit_price: 1_000.00, invoice_id: invoice2.id, item_id: create(:item, unit_price: 10.00).id)
+
+    invoice3 = create(:invoice, merchant_id: merchant1.id)
+    create(:transaction, result: 'success', invoice_id: invoice3.id)
+    create(:invoice_item, quantity: 1, unit_price: 2_000.23, invoice_id: invoice3.id, item_id: create(:item, unit_price: 20.00).id)
+
+    invoice4 = create(:invoice, merchant_id: merchant1.id)
+    create(:transaction, result: 'failed', invoice_id: invoice4.id)
+    create(:invoice_item, quantity: 1, unit_price: 20.00, invoice_id: invoice4.id, item_id: create(:item, unit_price: 20.00).id)
+
+    invoice5 = create(:invoice, merchant_id: merchant1.id)
+    create(:transaction, result: 'success', invoice_id: invoice5.id)
+    create(:invoice_item, quantity: 1, unit_price: 34.00, invoice_id: invoice5.id, item_id: create(:item, unit_price: 30.00).id)
+
+    correct_total_revenue = 2_314.23
+    incorrect_total_revenue = 3_334.23
+
+    merchant_revenue = Merchant.single_revenue(merchant1.id)
+    expect(merchant_revenue).to be_a Revenue 
+    expect(merchant_revenue.revenue).to eq(correct_total_revenue)
+    expect(merchant_revenue.revenue).to_not eq(incorrect_total_revenue)
+  end
 end
