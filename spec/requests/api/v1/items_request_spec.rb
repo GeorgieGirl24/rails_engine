@@ -143,7 +143,7 @@ RSpec.describe 'Items API' do
                     updated_at: '12/12/20' }
 
     patch "/api/v1/items/#{id}", params: item_params
-# binding.pry
+
     expect(response).to_not be_successful
     expect(response.status).to eq(404)
   end

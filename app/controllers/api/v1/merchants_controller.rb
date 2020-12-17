@@ -39,8 +39,6 @@ class Api::V1::MerchantsController < ApplicationController
     merchant_params.reject do |attribute, search|
       search.blank?
     end
-    # binding.pry
-    # number_params.to_h.count
   end
 
   def self.reset_primary_key

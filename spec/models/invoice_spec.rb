@@ -51,15 +51,8 @@ describe Invoice do
       create(:invoice_item, quantity: 1, unit_price: 10.00, invoice_id: invoice8.id, item_id: create(:item, unit_price: 10.00).id)
 
       quantity = 5
-      # get "/api/v1/invoices/most_expensive?quantity=#{quantity}"
-
-      # expect(response).to be_successful
       results = Invoice.most_expensive(quantity)
-      # binding.pry
-      # results = JSON.parse(response.body, symbolize_names: true)
 
-      # expect(results).to be_a Array
-      # expect(results.count).to eq(5)
       expect(results.first).to be_a Invoice
       expect(results.first[:id]).to be_a Integer
       expect(results.first[:customer_id]).to be_a Integer
