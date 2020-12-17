@@ -57,7 +57,7 @@ RSpec.describe RevenueFacade do
       end_date = '2020-06-30T00:00:00 UTC'
 
       total = RevenueFacade.total_revenue(start_date, end_date)
-      # binding.pry
+    
       expect(total).to be_a Revenue
       expect(total.revenue).to eq(merchants_revenue)
       expect(total.revenue).to_not eq(incorrect_revenue)

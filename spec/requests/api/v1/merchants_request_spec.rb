@@ -93,19 +93,22 @@ RSpec.describe 'Merchants API' do
   end
 
   it 'can update attributes of a merchant' do
-    id = create(:merchant).id
-    original_merchant_name = Merchant.last.name
-
+    merchant_name = create(:merchant)
     merchant_params = { name: 'Sir Francis Drake',
                         created_at: '12/11/20',
                         updated_at: '12/12/20' }
 
-    patch "/api/v1/merchants/#{id}", params: merchant_params
+    patch "/api/v1/merchants/#{merchant_name.id}", params: merchant_params
 
     expect(response).to be_successful
+    result = JSON.parse(response.body, symbolize_names: true)[:data]
 
-    merchant = Merchant.find_by(id: id)
-    expect(merchant.name).to_not eq(original_merchant_name)
+    expect(result[:id].to_i).to eq(merchant_name.id)
+    expect(result[:attributes][:name]).to eq(merchant_params[:name])
+    expect(result[:attributes][:name]).to_not eq(merchant_name[:name])
+
+    merchant = Merchant.find_by(id: merchant_name.id)
+    expect(merchant.name).to_not eq(merchant_name)
     expect(merchant.name).to eq(merchant_params[:name])
   end
 

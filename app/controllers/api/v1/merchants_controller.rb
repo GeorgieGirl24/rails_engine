@@ -11,43 +11,35 @@ class Api::V1::MerchantsController < ApplicationController
     Merchant.reset_primary_key
     merchant = Merchant.new(merchant_params)
     if merchant.save
-      (render json: MerchantSerializer.new(merchant))
+      render json: MerchantSerializer.new(merchant)
     else
-      (render status: 404)
+      render status: 404
     end
   end
 
   def update
-    blank_check = []
-    merchant_params.to_h.each do |_key, value|
-      blank_check << if value.blank?
-                       nil
-                     else
-                       'all good'
-                     end
-    end
-
-    response = blank_check.all?('all good')
-    if response == true
-      (render json: MerchantSerializer.new(Merchant.update({
-                                                             name: params[:name],
-                                                             created_at: params[:created_at],
-                                                             updated_at: params[:updated_at]
-                                                           })))
+    if check_params.include?('name')
+      render json: MerchantSerializer.new(Merchant.update(params[:id], merchant_params))
     else
-      (render status: 404)
+      render status: 404
     end
   end
 
   def destroy
     if Merchant.exists?(params[:id])
-      Merchant.destroy(params[:id])
+       Merchant.destroy(params[:id])
     else
-      (render status: 404)
+      render status: 404
     end
   end
 
   private
+
+  def check_params
+    merchant_params.reject do |attribute, search|
+      search.blank?
+    end
+  end
 
   def self.reset_primary_key
     ActiveRecord::Base.connection.reset_pk_sequence!('merchants')
