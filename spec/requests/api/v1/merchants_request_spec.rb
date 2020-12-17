@@ -93,19 +93,21 @@ RSpec.describe 'Merchants API' do
   end
 
   it 'can update attributes of a merchant' do
-    id = create(:merchant).id
-    original_merchant_name = Merchant.last.name
-
+    merchant_name = create(:merchant)
     merchant_params = { name: 'Sir Francis Drake',
                         created_at: '12/11/20',
                         updated_at: '12/12/20' }
 
-    patch "/api/v1/merchants/#{id}", params: merchant_params
+    patch "/api/v1/merchants/#{merchant_name.id}", params: merchant_params
 
     expect(response).to be_successful
+    result = JSON.parse(response.body, symbolize_names: true)[:data]
+    expect(result[:id].to_i).to eq(merchant_name.id)
+    expect(result[:attributes][:name]).to eq(merchant_params[:name])
+    expect(result[:attributes][:name]).to_not eq(merchant_name[:name])
+    merchant = Merchant.find_by(id: merchant_name.id)
 
-    merchant = Merchant.find_by(id: id)
-    expect(merchant.name).to_not eq(original_merchant_name)
+    expect(merchant.name).to_not eq(merchant_name)
     expect(merchant.name).to eq(merchant_params[:name])
   end
 
@@ -132,14 +134,9 @@ RSpec.describe 'Merchants API' do
   end
 
   it 'cannot destroy a merchant object without an id' do
-    merchant = create(:merchant)
-
-    if merchant.id == 1
-      delete '/api/v1/merchants/1'
-    else
-      # expect(response.status).to_not eq(204)
-      # expect(response.status).to eq(404)
-      expect(merchant[:name]).to eq(merchant[:name])
-    end
+    merchant = create(:merchant, id: 2)
+    delete "/api/v1/merchants/1"
+    expect(response).to_not be_successful
+    expect(response.status).to eq(404)
   end
 end
