@@ -17,6 +17,10 @@ Rails.application.routes.draw do
         get '/:item_id/merchants', to: 'merchants#show'
       end
 
+      namespace :invoices do
+        get 'most_expensive', to: 'statistics#most_expensive'
+      end
+
       resources :merchants
       resources :items
       resources :revenue, only: [:index]
