@@ -93,17 +93,33 @@ describe Item do
     end
 
     it '.search_multiple' do
-      item1 = create(:item)
-      item2 = create(:item)
+      item1 = create(:item, updated_at: '2020-04-01T00:00:00 UTC')
+      item2 = create(:item, updated_at: '2020-04-01T00:00:00 UTC')
       item3 = create(:item, unit_price: 13.95)
       item4 = create(:item, unit_price: 13.95)
+      item4 = create(:item, name: 'Zz Plant')
+      item4 = create(:item, name: 'Prayer Plant')
+
       search = 13.95
       attribute = 'unit_price'
       response = Item.search_multiple(attribute, search)
-      # expect(response).to be_a Array
       expect(response.count).to eq(2)
       expect(response.first).to be_a Item
       expect(response.first[:name]).to be_a String
+
+      search1 = '2020-04-01T00:00:00 UTC'
+      attribute1 = 'updated_at'
+      response1 = Item.search_multiple(attribute1, search1)
+      expect(response1.count).to eq(2)
+      expect(response1.first).to be_a Item
+      expect(response1.first[:name]).to be_a String
+
+      search2 = 'PLANT'
+      attribute2 = 'name'
+      response2 = Item.search_multiple(attribute2, search2)
+      expect(response2.count).to eq(2)
+      expect(response2.first).to be_a Item
+      expect(response2.first[:name]).to be_a String
     end
   end
 end
