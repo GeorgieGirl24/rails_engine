@@ -15,36 +15,29 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def update
-    blank_check = []
-    item_params.to_h.each do |key, value|
-      if value.blank?
-        blank_check << nil
-      else
-        blank_check << 'all good'
-      end
-    end
-
-    response = blank_check.all?('all good')
-    if response == true
-      (render json: ItemSerializer.new(Item.update({
-                                                    name: params[:name],
-                                                    created_at: params[:created_at],
-                                                    updated_at: params[:updated_at]
-                                                    })))
+    if check_params == 6
+      render json: ItemSerializer.new(Item.update(params[:id], item_params))
     else
-      (render :status => 404)
+      render status: 404
     end
   end
 
   def destroy
-    if item = Item.find(params[:id])
-      item.destroy
+    if Item.exists?(params[:id])
+       Item.destroy(params[:id])
     else
-      (render :status => 404)
+      (render status: 404)
     end
   end
 
   private
+
+  def check_params
+    number_params = item_params.reject do |attribute, search|
+      search.blank?
+    end
+    number_params.to_h.count
+  end
 
   def self.reset_primary_key
     ActiveRecord::Base.connection.reset_pk_sequence!('items')

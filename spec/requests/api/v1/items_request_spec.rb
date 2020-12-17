@@ -112,32 +112,38 @@ RSpec.describe 'Items API' do
   end
 
   it 'can update attributes of a item' do
-    id = create(:item).id
-    original_item_name = Item.last.name
-
-    item_params = { name: 'Sir Francis Drake',
-                    created_at: '12/11/20',
-                    updated_at: '12/12/20' }
-
-    patch "/api/v1/items/#{id}", params: item_params
+    merchant = create(:merchant)
+    item_name = create(:item,)
+    item_params = {
+      name: 'The Boy, the Mole, the Fox and the Horse',
+      description: item_name[:description],
+      unit_price: item_name[:unit_price],
+      merchant_id: merchant.id,
+      created_at: item_name[:created_at],
+      updated_at: item_name[:updated_at]
+    }
+    patch "/api/v1/items/#{item_name.id}", params: item_params
 
     expect(response).to be_successful
-
-    item = Item.find_by(id: id)
-    expect(item.name).to_not eq(original_item_name)
+    result = JSON.parse(response.body, symbolize_names: true)[:data]
+    expect(result[:id].to_i).to eq(item_name.id)
+    expect(result[:attributes][:name]).to eq(item_params[:name])
+    expect(result[:attributes][:description]).to eq(item_name[:description])
+    item = Item.find_by(id: item_name.id)
+    expect(item.name).to_not eq(item_name)
     expect(item.name).to eq(item_params[:name])
   end
 
   it 'cannot update attributes of a item if its empty' do
     id = create(:item).id
-    original_item_name = Merchant.last.name
+    original_item_name = Item.last.name
 
     item_params = { name: '',
                     created_at: '12/11/20',
                     updated_at: '12/12/20' }
 
     patch "/api/v1/items/#{id}", params: item_params
-
+# binding.pry
     expect(response).to_not be_successful
     expect(response.status).to eq(404)
   end
@@ -152,13 +158,9 @@ RSpec.describe 'Items API' do
   end
 
   it 'cannot destroy a item object without an id' do
-    item = create(:item)
-    if item.id == 1
-      delete '/api/v1/items/1'
-    else
-      # expect(response.status).to_not eq(204)
-      # expect(response.status).to eq(404)
-      expect(item[:name]).to eq(item[:name])
-    end
+    item = create(:item, id: 2)
+    delete '/api/v1/items/1'
+    expect(response).to_not be_successful
+    expect(response.status).to eq(404)
   end
 end
