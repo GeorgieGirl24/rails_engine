@@ -65,7 +65,7 @@ RSpec.describe 'Finds the Invoices with the most expensive revenues' do
 
     results = JSON.parse(response.body, symbolize_names: true)[:data]
     expect(response).to be_successful
-    # binding.pry
+
     expect(results.count).to eq(quantity)
     expect(results[0]).to have_key :id
     expect(results[0][:id].to_i).to eq(invoice5.id)
