@@ -32,6 +32,7 @@ RSpec.describe 'Api::V1::Items::SearchController' do
     attribute = :unit_price
     search_term = 12.36
     get "/api/v1/items/find_all?#{attribute}=#{search_term}"
+
     expect(response).to be_successful
     items = JSON.parse(response.body, symbolize_names: true)[:data]
     expect(items).to be_a Array
