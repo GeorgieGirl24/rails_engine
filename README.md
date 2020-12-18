@@ -92,10 +92,12 @@ This application uses the below test suit:
 ### Request & Facade Tests
   These integration-level tests ensure that compontents interact together in the expected manner
   
-  <img scr="/read_me_folder/request_spec_image.png" width="400">
+  This is an example of an integration test
+  
+<img scr="/read_me_folder/request_spec_image.png" width="400">
   
 
-![]("/read_me_folder/TestCoverage.png" width="600")
+
 
 
 <img src="/read_me_folder/TestCoverage.png" width="600">
