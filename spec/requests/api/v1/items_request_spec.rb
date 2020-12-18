@@ -26,12 +26,6 @@ RSpec.describe 'Items API' do
 
       expect(item['attributes']).to have_key('unit_price')
       expect(item['attributes']['unit_price']).to be_a Float
-
-      expect(item['attributes']).to have_key('created_at')
-      expect(item['attributes']['created_at']).to be_a String
-
-      expect(item['attributes']).to have_key('updated_at')
-      expect(item['attributes']['updated_at']).to be_a String
     end
   end
 
@@ -59,12 +53,6 @@ RSpec.describe 'Items API' do
 
     expect(item['data']['attributes']).to have_key('unit_price')
     expect(item['data']['attributes']['unit_price']).to be_a Float
-
-    expect(item['data']['attributes']).to have_key('created_at')
-    expect(item['data']['attributes']['created_at']).to be_a String
-
-    expect(item['data']['attributes']).to have_key('updated_at')
-    expect(item['data']['attributes']['updated_at']).to be_a String
   end
 
   it 'can create a new item' do
@@ -118,9 +106,7 @@ RSpec.describe 'Items API' do
       name: 'The Boy, the Mole, the Fox and the Horse',
       description: item_name[:description],
       unit_price: item_name[:unit_price],
-      merchant_id: merchant.id,
-      created_at: item_name[:created_at],
-      updated_at: item_name[:updated_at]
+      merchant_id: merchant.id
     }
     patch "/api/v1/items/#{item_name.id}", params: item_params
 

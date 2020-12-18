@@ -75,7 +75,7 @@ RSpec.describe 'Api::V1::Items::SearchController' do
   it 'can find an item matching the search with ALL CAPS in the description' do
     item1 = create(:item,
                    name: 'Orchid',
-                   description: 'WILDLY BEAUTIFUL species of flower')
+                   description: 'WILDLY beautiful species of flower')
     item2 = create(:item,
                    name: 'Geranium')
     item3 = create(:item,

@@ -8,7 +8,6 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def create
-    Item.reset_primary_key
     item = Item.new(item_params)
     return item.save ?
       (render json:ItemSerializer.new(item)) : (render status: 404)
@@ -37,10 +36,6 @@ class Api::V1::ItemsController < ApplicationController
       search.blank?
     end
     number_params.include?('name' && 'description' && 'merchant_id' && 'unit_price')
-  end
-
-  def self.reset_primary_key
-    ActiveRecord::Base.connection.reset_pk_sequence!('items')
   end
 
   def item_params
