@@ -43,7 +43,8 @@ Then type in the terminal:
 
 The file tree should look like 
 
-```rails-engine
+```
+rails-engine
    |
    |___rails_engine
    |
