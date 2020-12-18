@@ -17,7 +17,7 @@
   [RailsEngine](https://github.com/GeorgieGirl24/rails_engine)
   
   
-  
+
 ## How to Install Rails Engine
 To install and run this application locally:
 
@@ -58,15 +58,15 @@ To install and run this application locally:
   rails s -p 3001
   ``` 
   
-  Open another terminal window. Hit `'command' + 't'`
+  Open another terminal window with `'command' + 't'`
 
-  Inside the rails_engine directory, hit the `'command' + 't'` to open another terminal window (yes, 4 terminal windows should be open)
+  Navigate into rails_engine directory, then with the `'command' + 't'` open another terminal window (yes, 4 terminal windows should be open)
 
   Execute:
   ```
   rails s
   ```
-
+  The Rails Driver will be running on `localhost:3001` and Rails Engine will be running on `localhost:3000`
 
 
 
