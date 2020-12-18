@@ -1,6 +1,5 @@
 # Rails Engine
 
-- [ ] Badges (of Software used)
 This e-commerce application allows a user to access various API endpoints.
 
 ## Table of Contents
@@ -9,14 +8,13 @@ This e-commerce application allows a user to access various API endpoints.
   - [Testing](#testing)
   - [Example Usage](#feature-tests)
   - [Licenses](#licenses)
-  - [Project Leads](#project-leads)
+  - [Contact](#contact)
   - [Acknowledgments](#acknowledgments)
   
 ## What it does 
-
-  Rails Engine allows a user to interact with the front-end application (Rails Driver), while the
-  RailsEngine is a front-end and back-end application that communicate through an API. RailsDriver is the front-end portion, while RailsEngine is the back-end portion. 
-  [RailsEngine](https://github.com/GeorgieGirl24/rails_engine)
+* This is an E-Commerce Application that is working in a service-oriented architecture. This means that ther is a front-end app that communicates via an API with the back-end app. The back-end's role is to expose the API, while the front-end is consuming that API 
+  
+  
   
   
 
@@ -87,12 +85,12 @@ This application uses the below test suit:
   
 ```
 ### Model & PORO Tests
-  These unit-level tests ensure that the smallest compontents are behaving in the expected manner
+* These unit-level tests ensure that the smallest compontents are behaving in the expected manner
   
   
 
 ### Request & Facade Tests
-  These integration-level tests ensure that compontents interact together in the expected manner
+* These integration-level tests ensure that compontents interact together in the expected manner
   
   This is an example of an integration test
   
@@ -102,11 +100,23 @@ This application uses the below test suit:
 
 
 
+```
+bundle exec rspec spec/features/harness_spec.rb
+
+```
+![](/read_me_folder/request_spec_image.png)
+
+
 <img src="/read_me_folder/TestCoverage.png" width="600">
 
 - [ ] How to set up the dev environment
 
+![picture](read_me_folder/request_spec_image.png)
+### Schema
 
+<p align="center">
+ <img src="/read_me_folder/schema_image.png">
+</p>
 
 ## Example Usage
 
@@ -120,10 +130,11 @@ This application uses the below test suit:
 ## Contact 
 
 George Soderholm (https://www.linkedin.com/in/george-soderholm-05776947/)
+[RailsEngine](https://github.com/GeorgieGirl24/rails_engine)
 
 ## Acknowledgments
 * My Instructors: Dione and Ian
-* My Co-hort mates who answered questions and gave feedback
+* My 2008 cohort mates who answered questions and gave feedback
 
 
 
