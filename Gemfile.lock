@@ -99,6 +99,8 @@ GEM
     nio4r (2.5.4)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
+    nyan-cat-formatter (0.12.0)
+      rspec (>= 2.99, >= 2.14.2, < 4)
     parallel (1.20.1)
     parser (2.7.2.0)
       ast (~> 2.4.1)
@@ -144,6 +146,10 @@ GEM
       ffi (~> 1.0)
     regexp_parser (1.8.2)
     rexml (3.2.4)
+    rspec (3.10.0)
+      rspec-core (~> 3.10.0)
+      rspec-expectations (~> 3.10.0)
+      rspec-mocks (~> 3.10.0)
     rspec-core (3.10.0)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.0)
@@ -219,6 +225,7 @@ DEPENDENCIES
   jsonapi-serializer
   launchy
   listen (~> 3.2)
+  nyan-cat-formatter
   pg (>= 0.18, < 2.0)
   pry
   puma (~> 3.7)
