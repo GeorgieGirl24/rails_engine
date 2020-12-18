@@ -1,0 +1,597 @@
+{
+	"info": {
+		"_postman_id": "dc2bfefe-9fe3-48f6-b51b-762e316ad2fb",
+		"name": "RailsEngine",
+		"description": "For Technical Presentation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Finds all the Merchants",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000//api/v1/items/112",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"items",
+						"112"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Finds a specific Merchant by :id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000//api/v1/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new Merchant",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/merchants?name=Gilligans Giant Grocrey",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"merchants"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Gilligans Giant Grocrey"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update an existing Merchant's attributes",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/merchants/1?name=Sir Francis Drake",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"merchants",
+						"1"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Sir Francis Drake"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a Merchant by :id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000//api/v1/merchants/114",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"merchants",
+						"114"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find all the Items",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000//api/v1/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Finds a specific Item by :id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000//api/v1/items/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"items",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new Item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/items?name=Apple Pencil&description=Easy to use and super functional&unit_price=139.00&merchant_id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"items"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Apple Pencil"
+						},
+						{
+							"key": "description",
+							"value": "Easy to use and super functional"
+						},
+						{
+							"key": "unit_price",
+							"value": "139.00"
+						},
+						{
+							"key": "merchant_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update an existing Items's attributes",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/items/5?unit_price=13.95",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"items",
+						"5"
+					],
+					"query": [
+						{
+							"key": "unit_price",
+							"value": "13.95"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an Item by :id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000//api/v1/items/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"items",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Relationship: All of a specific Merchant's Items",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000//api/v1/merchants/24/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"merchants",
+						"24",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Relationship: A Merchant that is associated with a specific Item",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/merchants/find?&name=Sir Francis Drake",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"merchants",
+						"find"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						},
+						{
+							"key": "name",
+							"value": "Sir Francis Drake"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Merchant Single Attribute Finder",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/merchants/find?&name=Sir Francis Drake",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"merchants",
+						"find"
+					],
+					"query": [
+						{
+							"key": null,
+							"value": null
+						},
+						{
+							"key": "name",
+							"value": "Sir Francis Drake"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Merchant Multiple Attribute Finder",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/merchants/find_all?&name=man",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"merchants",
+						"find_all"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						},
+						{
+							"key": "name",
+							"value": "man"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Item Single Attribute Finder",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/items/find_all?created_at=2012-03-27",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"items",
+						"find_all"
+					],
+					"query": [
+						{
+							"key": "created_at",
+							"value": "2012-03-27"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Item Multiple Attribute Finder",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/items/find_all?created_at=2012-03-27",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"items",
+						"find_all"
+					],
+					"query": [
+						{
+							"key": "created_at",
+							"value": "2012-03-27"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Business Intelligence: Merchant(s) with Most Revenue",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/merchants/most_revenue?quantity=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"merchants",
+						"most_revenue"
+					],
+					"query": [
+						{
+							"key": "quantity",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Business Intelligence: Merchant(s) with Most Items Sold",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/merchants/most_items?quantity=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"merchants",
+						"most_items"
+					],
+					"query": [
+						{
+							"key": "quantity",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Business Intellegence: Revenue across a Date Range",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/revenue?start=2012-03-27 14:54:04&end=2012-03-27 14:54:08",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"revenue"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "2012-03-27 14:54:04"
+						},
+						{
+							"key": "end",
+							"value": "2012-03-27 14:54:08"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Business Intelligence: Revenue for a Merchant",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000//api/v1/merchants/1/revenue",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"merchants",
+						"1",
+						"revenue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Business Intelligence: Invoices(s) that are Most Expensive",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/items/find?created_at=2012-03-27",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"items",
+						"find"
+					],
+					"query": [
+						{
+							"key": "created_at",
+							"value": "2012-03-27"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
