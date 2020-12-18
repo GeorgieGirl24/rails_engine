@@ -92,6 +92,7 @@ These integration-level tests ensure that compontents interact together in the e
 
 
 ![](/read_me_folder/TestCoverage.png)
+
 - [ ] How to set up the dev environment
 
 
