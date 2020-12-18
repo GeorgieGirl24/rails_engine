@@ -50,19 +50,21 @@ To install and run this application locally:
    
   Now we need to get our 'local host' up and running. Rails Engine is already set up to run on `localhost:3000`
 
-  From inside `rails_driver`, hit the 'command' + 't' to open another terminal window
+  From inside `rails_driver`, hit the `'command' + 't'` to open another terminal window
 
   Execute: 
   
-  ```rails s -p 3001
+  ```
+  rails s -p 3001
   ``` 
   
-  Open another terminal window. Hit 'command' + 't'
+  Open another terminal window. Hit `'command' + 't'`
 
-  Inside the rails_engine directory, hit the 'command' + 't' to open another terminal window (yes, 4 terminal windows should be open)
+  Inside the rails_engine directory, hit the `'command' + 't'` to open another terminal window (yes, 4 terminal windows should be open)
 
   Execute:
-  ```rails s
+  ```
+  rails s
   ```
 
 
