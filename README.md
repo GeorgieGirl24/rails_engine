@@ -15,9 +15,10 @@ This e-commerce application allows a user to access various API endpoints.
 * This is an E-Commerce Application that is working in a service-oriented architecture. This means that there is a front-end app that communicates via an API with the back-end app. The back-end's role is to expose the API, while the front-end is consuming that API.  
  
  * To see a list of all the data that can returned, check out 
- ```
- ```
-  in the file tree above. This shows the expected data structures for all the possible requests
+   ```
+    RailsEngine.postman_collection.json
+   ```
+    in the file tree above. This shows the expected data structures for all the possible requests.
   
 ## How to Install Rails Engine
 To install and run this application locally:
