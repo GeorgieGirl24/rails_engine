@@ -85,10 +85,14 @@ This application uses the below test suit:
   
 ```
 ### Model & PORO Tests
-These unit-level tests ensure that the smallest compontents are behaving in the expected manner
+  These unit-level tests ensure that the smallest compontents are behaving in the expected manner
+  
+  
 
 ### Request & Facade Tests
-These integration-level tests ensure that compontents interact together in the expected manner
+  These integration-level tests ensure that compontents interact together in the expected manner
+  
+  ![]("/read_me_folder/request_spec_image.png")
 
 ![]("/read_me_folder/TestCoverage.png" width="600")
 
