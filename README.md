@@ -72,6 +72,32 @@ To install and run this application locally:
   
 3. Open your web browser adn navigate to http://localhost:3001
 
+## Dependencies
+
+* This application does use `jsonapi-serializer`. This steps up the serialization process. Please add this to the Gemfile.
+
+  ```
+  gem 'jsonapi-serializer'
+  ```
+  
+* This application does use `rack-cors`. This allows the front-end and the back-end parts of the program to run servers at the same time. Please add this to the Gemfile.
+
+  ```
+  gem 'rack-cors'
+  ```
+  Then inside `config/initializers/cors.rb` add this snippet of code
+  
+  ```
+  Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  allow do
+    origins 'example.com'
+
+    resource '*',
+      headers: :any,
+      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+  end
+  ```
+
 ## Testing 
 This application uses the below test suit:
 
@@ -145,6 +171,10 @@ This application uses the below test suit:
 
 * Ruby 2.5.3
 * RSpec
+
+## Resources
+
+* - [jsonapi-serializer](https://github.com/jsonapi-serializer/jsonapi-serializer)
 
 ## Contact 
 
