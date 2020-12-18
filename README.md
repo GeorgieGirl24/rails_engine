@@ -90,7 +90,7 @@ These unit-level tests ensure that the smallest compontents are behaving in the 
 ### Request & Facade Tests
 These integration-level tests ensure that compontents interact together in the expected manner
 
-
+![]("/read_me_folder/TestCoverage.png" width="600")
 <img src="/read_me_folder/TestCoverage.png" width="600">
 
 - [ ] How to set up the dev environment
