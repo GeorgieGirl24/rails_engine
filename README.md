@@ -48,7 +48,7 @@ To install and run this application locally:
      |___rails_driver
    ```
    
-  Now we need to get our 'local host' up and running. Rails Engine is already set up to run on `localhost:3000`
+2. Now we need to get our 'local host' up and running. Rails Engine is already set up to run on `localhost:3000`
 
   From inside `rails_driver`, hit the `'command' + 't'` to open another terminal window
 
@@ -67,16 +67,34 @@ To install and run this application locally:
   rails s
   ```
   The Rails Driver will be running on `localhost:3001` and Rails Engine will be running on `localhost:3000`
-
-
-
-
-
-
-
-- [ ] How to set up the dev environment
+  
+3. Open your web browser adn navigate to http://localhost:3001
 
 ## Testing 
+This application uses the below test suit:
+
+```
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'shoulda-matchers'
+  gem 'simplecov'
+  gem 'nyan-cat-formatter'
+  gem 'rspec-rails'
+  
+```
+### Model & PORO Tests
+These unit-level tests ensure that the smallest compontents are behaving in the expected manner
+
+### Request & Facade Tests
+These integration-level tests ensure that compontents interact together in the expected manner
+
+
+![](/read_me_folder/TestCoverage.png)
+- [ ] How to set up the dev environment
+
+
 
 ## Example Usage
 
