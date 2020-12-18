@@ -126,4 +126,49 @@ RSpec.describe 'Api::V1::Items::SearchController' do
     expect(item[:type]).to eq('item')
     expect(item[:attributes][:name]).to eq(item3.name)
   end
+
+  it 'will not return more than a  single item matching the search' do
+    item1 = create(:item, name: 'Orchid')
+    item2 = create(:item, name: 'Geranium')
+    item3 = create(:item, name: 'Prayer Plant')
+    item4 = create(:item, name: 'GYSYER Plant')
+
+    attribute = :name
+    search_term = 'lant'
+
+    get "/api/v1/items/find?#{attribute}=#{search_term}"
+    expect(response).to be_successful
+
+    item = JSON.parse(response.body, symbolize_names: true)[:data]
+
+    expect(item).to be_a Hash
+    expect(item[:id].to_i).to eq(item3.id)
+    expect(item[:id].to_i).to_not eq(item2.id)
+    expect(item[:id].to_i).to_not eq(item1.id)
+    expect(item[:type]).to eq('item')
+    expect(item[:attributes][:name]).to eq(item3.name)
+    expect(item[:attributes][:name]).to_not eq(item4.name)
+    expect(item[:attributes][:description]).to eq(item3.description)
+    expect(item[:attributes][:description]).to_not eq(item4.description)
+    expect(item[:attributes][:unit_price]).to eq(item3.unit_price)
+    expect(item[:attributes][:unit_price]).to_not eq(item4.unit_price)
+    expect(item[:attributes][:name]).to_not eq(item1.name)
+    expect(item[:attributes][:name].downcase).to include(search_term.downcase)
+  end
+
+  it 'cannot find an item not matching the search with a created_at date' do
+    merch1 = create(:merchant,
+                        name: 'Orchid',
+                        created_at: '2020-11-13')
+    merch2 = create(:merchant, name: 'Prayer Plant', created_at: '2020-10-13')
+    merch3 = create(:merchant, name: 'Geranium', created_at: '2020-11-13')
+
+    attribute = :created_at
+    search_term = '2019-11-13'
+
+    get "/api/v1/merchants/find?#{attribute}=#{search_term}"
+    no_item = JSON.parse(response.body, symbolize_names: true)[:data]
+
+    expect(no_item).to eq(nil)
+  end
 end
