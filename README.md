@@ -13,7 +13,8 @@
   - [Acknowledgments](#acknowledgments)
   
 ## What it does 
-
+  RailsEngine is a front-end and back-end application that communicate through an API. RailsDriver is the front-end portion, while RailsEngine is the back-end portion. 
+  [RailsEngine](https://github.com/GeorgieGirl24/rails-engine)
 ## How to Install Rails Engine
 
 - [ ] How to Install
@@ -27,8 +28,10 @@
 
 ## Acknowledgments
 
-- [ ] List of articles/resources on the topic
-- [ ] Contact
+## Contact
+
+George Soderholm [LinkedIn] ()
+
 
 
 
