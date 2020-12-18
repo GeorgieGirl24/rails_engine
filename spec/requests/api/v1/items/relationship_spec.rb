@@ -28,7 +28,7 @@ RSpec.describe 'Items relationship with all its merchant' do
 
     expect(response).to be_successful
     merchant = JSON.parse(response.body, symbolize_names: true)[:data]
-    binding.pry
+
     expect(merchant).to be_a Hash
     expect(merchant).to_not be_a Array
   end
