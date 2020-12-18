@@ -1,7 +1,7 @@
 # Rails Engine
 
 - [ ] Badges (of Software used)
-- [ ] Intro
+This e-commerce application allows a user to access various API endpoints.
 
 ## Table of Contents
   - [What it does](#what-it-does)
@@ -13,6 +13,8 @@
   - [Acknowledgments](#acknowledgments)
   
 ## What it does 
+
+  Rails Engine allows a user to interact with the front-end application (Rails Driver), while the
   RailsEngine is a front-end and back-end application that communicate through an API. RailsDriver is the front-end portion, while RailsEngine is the back-end portion. 
   [RailsEngine](https://github.com/GeorgieGirl24/rails_engine)
   
@@ -110,11 +112,19 @@ This application uses the below test suit:
 
 - [ ] Example Usage
 
+## Licenses
+
+* Ruby 2.5.3
+* RSpec
+
+## Contact 
+
+George Soderholm (https://www.linkedin.com/in/george-soderholm-05776947/)
+
 ## Acknowledgments
+* My Instructors: Dione and Ian
+* My Co-hort mates who answered questions and gave feedback
 
-## Contact
-
-George Soderholm [LinkedIn] (https://www.linkedin.com/in/george-soderholm-05776947/)
 
 
 
