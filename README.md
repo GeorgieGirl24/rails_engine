@@ -92,7 +92,8 @@ This application uses the below test suit:
 ### Request & Facade Tests
   These integration-level tests ensure that compontents interact together in the expected manner
   
-  ![]("/read_me_folder/request_spec_image.png")
+  <img scr="/read_me_folder/request_spec_image.png" width="400">
+  
 
 ![]("/read_me_folder/TestCoverage.png" width="600")
 
