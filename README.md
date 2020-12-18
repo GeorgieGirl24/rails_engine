@@ -174,7 +174,8 @@ This application uses the below test suit:
 
 ## Resources
 
-* - [jsonapi-serializer](https://github.com/jsonapi-serializer/jsonapi-serializer)
+- [jsonapi-serializer](https://github.com/jsonapi-serializer/jsonapi-serializer)
+- [factory-bot](https://medium.com/@JPLynch35/crank-out-tests-with-factory-bot-and-faker-e83a31a7693c)
 
 ## Contact 
 
