@@ -60,7 +60,6 @@ RSpec.describe 'Revenue Across Date Range' do
 
     expect(result).to be_a Hash
     expect(result[:id]).to eq(nil)
-    expect(result[:type]).to eq('revenue')
     expect(result[:attributes][:revenue]).to eq(merchants_revenue)
     expect(result[:attributes][:revenue]).to_not eq(incorrect_revenue)
   end

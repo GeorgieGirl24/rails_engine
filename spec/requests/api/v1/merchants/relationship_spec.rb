@@ -30,12 +30,6 @@ RSpec.describe 'Merchants relationship with all its items' do
 
       expect(item[:attributes]).to have_key :merchant_id
       expect(item[:attributes][:merchant_id]).to be_a Integer
-
-      expect(item[:attributes]).to have_key :created_at
-      expect(item[:attributes][:created_at]).to be_a String
-
-      expect(item[:attributes]).to have_key :updated_at
-      expect(item[:attributes][:updated_at]).to be_a String
     end
   end
 end
