@@ -4,18 +4,15 @@ This e-commerce application allows a user to access various API endpoints.
 
 ## Table of Contents
   - [What it does](#what-it-does)
-  - [How to Install](#how-to-install)
+  - [How to Install Rails Engine](#how-to-install-rails-engine)
   - [Testing](#testing)
-  - [Example Usage](#feature-tests)
+  - [Learning Goals](#learning-goals)
   - [Licenses](#licenses)
   - [Contact](#contact)
   - [Acknowledgments](#acknowledgments)
   
 ## What it does 
 * This is an E-Commerce Application that is working in a service-oriented architecture. This means that ther is a front-end app that communicates via an API with the back-end app. The back-end's role is to expose the API, while the front-end is consuming that API 
-  
-  
-  
   
 
 ## How to Install Rails Engine
@@ -87,40 +84,57 @@ This application uses the below test suit:
 ### Model & PORO Tests
 * These unit-level tests ensure that the smallest compontents are behaving in the expected manner
   
+  *This is an example of a unit test*
   
-
+  <p align="center">
+ <img src="https://imgur.com/XA5ZSb9.png">
+  </p>
+  
 ### Request & Facade Tests
+
 * These integration-level tests ensure that compontents interact together in the expected manner
   
-  This is an example of an integration test
+  *This is an example of an integration test*
   
-<img scr="/read_me_folder/request_spec_image.png" width="400">
-  
-
-
-
-
-```
-bundle exec rspec spec/features/harness_spec.rb
-
-```
-![](/read_me_folder/request_spec_image.png)
-
-
-<img src="/read_me_folder/TestCoverage.png" width="600">
-
-- [ ] How to set up the dev environment
-
-![picture](read_me_folder/request_spec_image.png)
-### Schema
-
+  <p align="center">
+ <img src="https://imgur.com/kiS6BYg.png">
+  </p>
+ 
+ * All tests are passing and the coverage for this application is:
 <p align="center">
- <img src="/read_me_folder/schema_image.png">
+ <img src="https://imgur.com/X4QPNOZ.png">
 </p>
 
-## Example Usage
 
-- [ ] Example Usage
+### Schema
+  *A visual idea of how the tables are interacting together*
+<p align="center">
+ <img src="https://imgur.com/TeAclim.png">
+</p>
+
+## Learning Goals
+
+* Expose an API
+
+* Use Serializers to format JSON response
+
+  <p align="center">
+   <img src="https://imgur.com/FVjGJDa.png">
+  </p>
+  
+* Test API exposure
+
+* Compose advanced ActiveRecord queries to analyze information stored in SQL databases
+
+   <p align="center">
+     <img src="https://imgur.com/e1NRFSF.png">
+   </p>
+
+  <p align="center">
+    <img src="https://imgur.com/66KdS9O.png">
+  </p>
+
+* Write basic SQL statements without the assistance of an ORM
 
 ## Licenses
 
