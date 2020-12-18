@@ -1,7 +1,10 @@
 class Api::V1::RevenueController < ApplicationController
   def index
-    start_date = params[:start]
-    end_date = params[:end]
-    render json: RevenueSerializer.new(RevenueFacade.total_revenue(start_date, end_date))
+    revenue = RevenueFacade.total_revenue(params[:start], params[:end])
+    if revenue.revenue > 0.00
+      render json: RevenueSerializer.new(revenue)
+    else
+
+    end
   end
 end

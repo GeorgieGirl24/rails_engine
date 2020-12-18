@@ -8,9 +8,9 @@ RSpec.describe 'Api::V1::Merchants::SearchController' do
     merchant4 = create(:merchant, name: 'The Best Crafter')
 
     attribute = :name
-    search_term = 'Crafter'
+    search = 'Crafter'
 
-    get "/api/v1/merchants/find_all?#{attribute}=#{search_term}"
+    get "/api/v1/merchants/find_all?#{attribute}=#{search}"
     expect(response).to be_successful
 
     merchants = JSON.parse(response.body, symbolize_names: true)[:data]
@@ -21,9 +21,10 @@ RSpec.describe 'Api::V1::Merchants::SearchController' do
       expect(merchant[:id].to_i).to eq(merchant1.id).or(eq merchant4.id)
       expect(merchant[:id].to_i).to_not eq(merchant3.id)
       expect(merchant[:id].to_i).to_not eq(merchant2.id)
-      expect(merchant[:attributes][:name]).to eq(merchant1.name).or(eq merchant4.name)
+      expect(merchant[:attributes][:name]).to eq(merchant1.name)
+                                          .or(eq merchant4.name)
       expect(merchant[:attributes][:name]).to_not eq(merchant3.name)
-      expect(merchant[:attributes][:name].downcase).to include(search_term.downcase)
+      expect(merchant[:attributes][:name].downcase).to include(search.downcase)
     end
   end
 
@@ -55,7 +56,7 @@ RSpec.describe 'Api::V1::Merchants::SearchController' do
     end
   end
 
-  it 'can find a single merchant matching the search parameter with part of the name' do
+  it 'can find a single merchant matching the search with part of the name' do
     merchant1 = create(:merchant, name: 'The Happily Ever Crafter')
     merchant2 = create(:merchant, name: 'The Pigeon Letters')
     merchant3 = create(:merchant, name: 'Her Name Is Mud')
@@ -83,7 +84,7 @@ RSpec.describe 'Api::V1::Merchants::SearchController' do
     end
   end
 
-  it 'can find a single merchant matching the search parameter with only middle of name' do
+  it 'can find a single merchant matching search with only middle of name' do
     merchant1 = create(:merchant, name: 'The Happily Ever Crafter')
     merchant2 = create(:merchant, name: 'The Pigeon Letters')
     merchant3 = create(:merchant, name: 'Her Name Is Mud')
@@ -102,22 +103,26 @@ RSpec.describe 'Api::V1::Merchants::SearchController' do
 
     merchants.each do |merchant|
       expect(merchant).to be_a Hash
-      expect(merchant[:id].to_i).to eq(merchant2.id).or(eq merchant4.id).or(eq merchant_5.id)
+      expect(merchant[:id].to_i).to eq(merchant2.id)
+                                .or(eq merchant4.id)
+                                .or(eq merchant_5.id)
       expect(merchant[:id].to_i).to_not eq(merchant3.id)
       expect(merchant[:id].to_i).to_not eq(merchant1.id)
       expect(merchant[:type]).to eq('merchant')
-      expect(merchant[:attributes][:name]).to eq(merchant2.name).or(eq merchant4.name).or(eq merchant_5.name)
+      expect(merchant[:attributes][:name]).to eq(merchant2.name)
+                                          .or(eq merchant4.name)
+                                          .or(eq merchant_5.name)
       expect(merchant[:attributes][:name]).to_not eq(merchant1.name)
       expect(merchant[:attributes][:name].downcase).to include(search_term.downcase)
     end
   end
 
-  it 'can find merchants matching the search parameter with a created_at date' do
-    merchant1 = create(:merchant,
+  it 'can find merchants matching the search with a created_at date' do
+    merch1 = create(:merchant,
                         name: 'The Happily Ever Crafter',
                         created_at: '2020-11-13')
-    merchant2 = create(:merchant, name: 'The Pigeon Letters', created_at: '2020-10-13')
-    merchant3 = create(:merchant, name: 'Her Name Is Mud', created_at: '2020-11-13')
+    merch2 = create(:merchant, name: 'The Pigeon Letters', created_at: '2020-10-13')
+    merch3 = create(:merchant, name: 'Her Name Is Mud', created_at: '2020-11-13')
 
     attribute = :created_at
     search_term = '2020-11-13'
@@ -131,11 +136,27 @@ RSpec.describe 'Api::V1::Merchants::SearchController' do
 
     merchants.each do |merchant|
       expect(merchant).to be_a Hash
-      expect(merchant[:id].to_i).to eq(merchant3.id).or(eq merchant1.id)
-      expect(merchant[:id].to_i).to_not eq(merchant2.id)
+      expect(merchant[:id].to_i).to eq(merch3.id).or(eq merch1.id)
+      expect(merchant[:id].to_i).to_not eq(merch2.id)
       expect(merchant[:type]).to eq('merchant')
-      expect(merchant[:attributes][:name]).to eq(merchant3.name).or(eq merchant1.name)
-      expect(merchant[:attributes][:name]).to_not eq(merchant2.name)
+      expect(merchant[:attributes][:name]).to eq(merch3.name).or(eq merch1.name)
+      expect(merchant[:attributes][:name]).to_not eq(merch2.name)
     end
+  end
+
+  it 'cannot find merchants not matching the search with a created_at date' do
+    merch1 = create(:merchant,
+                        name: 'The Happily Ever Crafter',
+                        created_at: '2020-11-13')
+    merch2 = create(:merchant, name: 'The Pigeon Letters', created_at: '2020-10-13')
+    merch3 = create(:merchant, name: 'Her Name Is Mud', created_at: '2020-11-13')
+
+    attribute = :created_at
+    search_term = '2019-11-13'
+
+    get "/api/v1/merchants/find_all?#{attribute}=#{search_term}"
+    no_merchant = JSON.parse(response.body, symbolize_names: true)[:data]
+
+    expect(no_merchant).to eq([])
   end
 end

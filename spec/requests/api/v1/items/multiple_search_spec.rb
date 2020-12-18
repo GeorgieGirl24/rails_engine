@@ -32,6 +32,7 @@ RSpec.describe 'Api::V1::Items::SearchController' do
     attribute = :unit_price
     search_term = 12.36
     get "/api/v1/items/find_all?#{attribute}=#{search_term}"
+
     expect(response).to be_successful
     items = JSON.parse(response.body, symbolize_names: true)[:data]
     expect(items).to be_a Array
@@ -149,5 +150,21 @@ RSpec.describe 'Api::V1::Items::SearchController' do
       expect(item[:attributes][:unit_price]).to eq(item3.unit_price)
         .or(eq item2.unit_price)
     end
+  end
+
+  it 'cannot find items not matching the search with a created_at date' do
+    merch1 = create(:merchant,
+                        name: 'Prayer Plant',
+                        created_at: '2020-11-13')
+    merch2 = create(:merchant, name: 'Geranium', created_at: '2020-10-13')
+    merch3 = create(:merchant, name: 'Orchid', created_at: '2020-11-13')
+
+    attribute = :created_at
+    search_term = '2019-11-13'
+
+    get "/api/v1/merchants/find_all?#{attribute}=#{search_term}"
+    no_item = JSON.parse(response.body, symbolize_names: true)[:data]
+
+    expect(no_item).to eq([])
   end
 end

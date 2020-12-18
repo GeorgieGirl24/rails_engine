@@ -68,7 +68,7 @@ RSpec.describe 'Merchants API' do
     expect(response.status).to eq(404)
   end
 
-  it 'can not create a new merchant when only some merchant_params are present' do
+  it 'cannot create new merchant when only some merchant_params are present' do
     merchant_params = {
       name: '',
       created_at: '12/12/20',
