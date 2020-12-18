@@ -32,4 +32,16 @@ RSpec.describe 'Merchants relationship with all its items' do
       expect(item[:attributes][:merchant_id]).to be_a Integer
     end
   end
+
+  it 'cannot return items that a Merchant does not have' do
+    merchant1 = create(:merchant)
+    merchant2 = create(:merchant)
+    id = merchant1.id
+    get "/api/v1/merchants/#{id}/items"
+
+    expect(response).to be_successful
+    items = JSON.parse(response.body, symbolize_names: true)[:data]
+  
+    expect(items).to eq([])
+  end
 end
