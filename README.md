@@ -5,6 +5,7 @@ This e-commerce application allows a user to access various API endpoints.
 ## Table of Contents
   - [What it does](#what-it-does)
   - [How to Install Rails Engine](#how-to-install-rails-engine)
+  - [Dependencies](#dependencies)
   - [Testing](#testing)
   - [Learning Goals](#learning-goals)
   - [Licenses](#licenses)
