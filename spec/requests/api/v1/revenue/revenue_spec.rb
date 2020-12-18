@@ -123,8 +123,8 @@ RSpec.describe 'Revenue Across Date Range' do
           item_id: create(:item, unit_price: 50.00).id)
 
     invoice10 = create(:invoice,
-                      merchant_id: merchant5.id, s
-                      tatus: 'shipped',
+                      merchant_id: merchant5.id, 
+                      status: 'shipped',
                       created_at: '2020-01-01T00:00:00 UTC')
     create(:transaction,
           result: 'failed',

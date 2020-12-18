@@ -59,8 +59,7 @@ RSpec.describe 'Items API' do
     merchant_id = create(:merchant).id
     item_params = {
       name: 'The Boy, the Mole, the Fox and the Horse',
-      description: 'Charlie Mackesy offers inspiration and hope in uncertain times in this beautiful book, following the tale of a curious boy, a greedy mole, a wary fox and a wise horse who find themselves together in sometimes difficult terrain, sharing their greatest fears and biggest discoveries about vulnerability, kindness, hope, friendship and love.
-      The shared adventures and important conversations between the four friends are full of life lessons that have connected with readers of all ages. ',
+      description: 'Heartwarming story',
       unit_price: 14.13,
       merchant_id: merchant_id,
       created_at: '12/12/20',

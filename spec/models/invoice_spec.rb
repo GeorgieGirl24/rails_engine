@@ -20,35 +20,67 @@ describe Invoice do
 
       invoice1 = create(:invoice, merchant_id: merchant1.id)
       create(:transaction, result: 'success', invoice_id: invoice1.id)
-      create(:invoice_item, quantity: 1, unit_price: 100.00, invoice_id: invoice1.id, item_id: create(:item, unit_price: 10.00).id)
+      create(:invoice_item,
+            quantity: 1,
+            unit_price: 100.00,
+            invoice_id: invoice1.id,
+            item_id: create(:item, unit_price: 10.00).id)
 
       invoice2 = create(:invoice, merchant_id: merchant1.id)
       create(:transaction, result: 'success', invoice_id: invoice2.id)
-      create(:invoice_item, quantity: 1, unit_price: 1_000.00, invoice_id: invoice2.id, item_id: create(:item, unit_price: 10.00).id)
+      create(:invoice_item,
+            quantity: 1,
+            unit_price: 1_000.00,
+            invoice_id: invoice2.id,
+            item_id: create(:item, unit_price: 10.00).id)
 
       invoice3 = create(:invoice, merchant_id: merchant2.id)
       create(:transaction, result: 'success', invoice_id: invoice3.id)
-      create(:invoice_item, quantity: 1, unit_price: 300.00, invoice_id: invoice3.id, item_id: create(:item, unit_price: 10.00).id)
+      create(:invoice_item,
+            quantity: 1,
+            unit_price: 300.00,
+            invoice_id: invoice3.id,
+            item_id: create(:item, unit_price: 10.00).id)
 
       invoice4 = create(:invoice, merchant_id: merchant2.id)
       create(:transaction, result: 'failed', invoice_id: invoice4.id)
-      create(:invoice_item, quantity: 1, unit_price: 150.00, invoice_id: invoice4.id, item_id: create(:item, unit_price: 10.00).id)
+      create(:invoice_item,
+            quantity: 1,
+            unit_price: 150.00,
+            invoice_id: invoice4.id,
+            item_id: create(:item, unit_price: 10.00).id)
 
       invoice5 = create(:invoice, merchant_id: merchant2.id)
       create(:transaction, result: 'success', invoice_id: invoice5.id)
-      create(:invoice_item, quantity: 1, unit_price: 2_000.00, invoice_id: invoice5.id, item_id: create(:item, unit_price: 10.00).id)
+      create(:invoice_item,
+            quantity: 1,
+            unit_price: 2_000.00,
+            invoice_id: invoice5.id,
+            item_id: create(:item, unit_price: 10.00).id)
 
       invoice6 = create(:invoice, merchant_id: merchant2.id)
       create(:transaction, result: 'success', invoice_id: invoice6.id)
-      create(:invoice_item, quantity: 1, unit_price: 10_000.50, invoice_id: invoice6.id, item_id: create(:item, unit_price: 10.00).id)
+      create(:invoice_item,
+            quantity: 1,
+            unit_price: 10_000.50,
+            invoice_id: invoice6.id,
+            item_id: create(:item, unit_price: 10.00).id)
 
       invoice7 = create(:invoice, merchant_id: merchant1.id)
       create(:transaction, result: 'failed', invoice_id: invoice7.id)
-      create(:invoice_item, quantity: 1, unit_price: 7_000.00, invoice_id: invoice7.id, item_id: create(:item, unit_price: 10.00).id)
+      create(:invoice_item,
+            quantity: 1,
+            unit_price: 7_000.00,
+            invoice_id: invoice7.id,
+            item_id: create(:item, unit_price: 10.00).id)
 
       invoice8 = create(:invoice, merchant_id: merchant1.id)
       create(:transaction, result: 'success', invoice_id: invoice8.id)
-      create(:invoice_item, quantity: 1, unit_price: 10.00, invoice_id: invoice8.id, item_id: create(:item, unit_price: 10.00).id)
+      create(:invoice_item,
+            quantity: 1,
+            unit_price: 10.00,
+            invoice_id: invoice8.id,
+            item_id: create(:item, unit_price: 10.00).id)
 
       quantity = 5
       results = Invoice.most_expensive(quantity)
