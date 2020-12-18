@@ -8,7 +8,6 @@ class Api::V1::MerchantsController < ApplicationController
   end
 
   def create
-    Merchant.reset_primary_key
     merchant = Merchant.new(merchant_params)
     if merchant.save
       render json: MerchantSerializer.new(merchant)
@@ -41,9 +40,9 @@ class Api::V1::MerchantsController < ApplicationController
     end
   end
 
-  def self.reset_primary_key
-    ActiveRecord::Base.connection.reset_pk_sequence!('merchants')
-  end
+  # def self.reset_primary_key
+  #   ActiveRecord::Base.connection.reset_pk_sequence!('merchants')
+  # end
 
   def merchant_params
     params.permit(:name, :created_at, :updated_at)
