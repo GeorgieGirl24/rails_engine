@@ -180,7 +180,7 @@ This application uses the below test suit:
 
 ## Contact 
 
-George Soderholm (https://www.linkedin.com/in/george-soderholm-05776947/)
+George Soderholm [LinkedIn](https://www.linkedin.com/in/george-soderholm-05776947/)
 [RailsEngine](https://github.com/GeorgieGirl24/rails_engine)
 
 ## Acknowledgments
